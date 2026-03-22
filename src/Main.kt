@@ -17,7 +17,16 @@ fun main() {
     println("--------------------------")
 
     getUserActionMenu()
+    while (true) {
+        val action = getUserActionMenu()
+        when (action) {
+            'R' -> showRules()
+            'P' -> game()
+            'Q' -> break
+        }
+    }
 }
+
 
 fun getUserActionMenu(): Char {
     println("What would you like to do?")
@@ -35,3 +44,12 @@ fun getUserActionMenu(): Char {
         }
     }
 }
+
+fun showRules() {
+    println("Rules")
+}
+
+fun game() {
+    println("Game")
+}
+
