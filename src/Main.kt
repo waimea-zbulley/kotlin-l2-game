@@ -36,7 +36,7 @@ fun getUserActionMenu(): Char {
     var choice: Char?
 
     while (true) {
-        print(">")
+        print("Choice: ")
         choice = readlnOrNull()?.first()?.uppercaseChar()
 
         if (choice != null && choice in "RPQ") {
