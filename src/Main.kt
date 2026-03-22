@@ -13,5 +13,5 @@
 
 
 fun main() {
-    println("Hello World! adflkjgjdlkdfjlkgdjjk")
+    println("Hello World!")
 }
