@@ -51,6 +51,7 @@ fun showRules() {
 }
 
 fun game() {
+    playerNames()
     createBoxes()
     showBoxes()
 
@@ -92,4 +93,21 @@ fun showBoxes() {
         print("───┴")
     }
     println("───┘")
+}
+
+fun playerNames(): Pair<String, String> {
+    var player1: String?
+    var player2: String?
+
+    while (true) {
+        print("Player 1 name: ")
+        player1 = readlnOrNull()
+        print("Player 2 name")
+        player2 = readlnOrNull()
+
+        if (player1 != null && player2 != null) {
+            break
+        }
+    }
+    return Pair(player1, player2)
 }
