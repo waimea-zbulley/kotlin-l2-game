@@ -52,6 +52,7 @@ fun showRules() {
 
 fun game() {
     val (player1, player2) = playerNames()
+
     createBoxes()
 
     println("──────────────────────────────")
@@ -61,7 +62,7 @@ fun game() {
 
     println("")
     showBoxes()
-
+    playTurn(player1, player2)
 
 }
 
@@ -118,4 +119,8 @@ fun playerNames(): Pair<String, String> {
         }
     }
     return Pair(player1, player2)
+}
+
+fun playTurn(player1: String, player2: String) {
+    print("$player1's turn please select what square you would like to place your token in (1-12): ")
 }
