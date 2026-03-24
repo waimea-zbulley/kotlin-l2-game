@@ -61,8 +61,11 @@ fun game() {
     println("$player2 will play as O")
 
     println("")
+
     showBoxes()
-    playTurn(player1, player2)
+    while (true) {
+        playTurn(player1, player2)
+    }
 
 }
 
@@ -122,5 +125,26 @@ fun playerNames(): Pair<String, String> {
 }
 
 fun playTurn(player1: String, player2: String) {
-    print("$player1's turn please select what square you would like to place your token in (1-12): ")
+
+
+    while (true) {
+        print("$player1's (X) turn please select what square you would like to place your token in (1-12): ")
+        val player1Turn = readln().toInt()
+        if (boxes[player1Turn - 1] == "-") {
+            boxes[player1Turn - 1] = "X"
+            break
+        } else println("Invalid Spot")
+    }
+    showBoxes()
+
+    while (true) {
+        print("$player2's (O) turn please select what square you would like to place your token in (1-12): ")
+        val player2Turn = readln().toInt()
+        if (boxes[player2Turn - 1] == "-") {
+            boxes[player2Turn - 1] = "O"
+            break
+        } else println("Invalid Spot")
+    }
+    showBoxes()
+
 }
