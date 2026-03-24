@@ -11,12 +11,13 @@
  * =====================================================================
  */
 
+val numBoxes = 12
+val boxes = mutableListOf<String>()
 
 fun main() {
     println("Welcome to Chain Reaction!")
     println("--------------------------")
 
-    getUserActionMenu()
     while (true) {
         val action = getUserActionMenu()
         when (action) {
@@ -37,7 +38,7 @@ fun getUserActionMenu(): Char {
 
     while (true) {
         print("Choice: ")
-        choice = readlnOrNull()?.first()?.uppercaseChar()
+        choice = readlnOrNull()?.firstOrNull()?.uppercaseChar()
 
         if (choice != null && choice in "RPQ") {
             return choice
@@ -50,6 +51,22 @@ fun showRules() {
 }
 
 fun game() {
-    println("Game")
+    createBoxes()
+
+    println()
 }
 
+fun createBoxes() {
+
+    // Sets the list to be clear for a new game
+    boxes.clear()
+
+    // Adds the empty values for boxes
+    repeat(numBoxes) {
+        boxes.add("-")
+    }
+}
+
+fun showBoxes() {
+    
+}
