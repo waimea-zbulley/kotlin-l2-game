@@ -52,8 +52,8 @@ fun showRules() {
 
 fun game() {
     createBoxes()
+    showBoxes()
 
-    println()
 }
 
 fun createBoxes() {
@@ -68,5 +68,28 @@ fun createBoxes() {
 }
 
 fun showBoxes() {
-    
+
+    // Returns if list is empty in order to not print only ending and starting segments of boxes
+    if (boxes.isEmpty()) return
+
+    // Prints the top section of boxes
+    print("┌")
+    for (i in 1..boxes.size - 1) {
+        print("───┬")
+    }
+    println("───┐")
+
+    // Prints the middle section of boxes
+    for (i in boxes) {
+        print("│")
+        print(" $i".padEnd(3))
+    }
+    println("│")
+
+    // Prints the bottom section of boxes
+    print("└")
+    for (i in 1..boxes.size - 1) {
+        print("───┴")
+    }
+    println("───┘")
 }
