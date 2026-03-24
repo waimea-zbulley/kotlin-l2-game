@@ -51,9 +51,17 @@ fun showRules() {
 }
 
 fun game() {
-    playerNames()
+    val (player1, player2) = playerNames()
     createBoxes()
+
+    println("──────────────────────────────")
+    println("Hello $player1 & $player2!")
+    println("$player1 will play as X")
+    println("$player2 will play as O")
+
+    println("")
     showBoxes()
+
 
 }
 
@@ -102,7 +110,7 @@ fun playerNames(): Pair<String, String> {
     while (true) {
         print("Player 1 name: ")
         player1 = readlnOrNull()
-        print("Player 2 name")
+        print("Player 2 name: ")
         player2 = readlnOrNull()
 
         if (player1 != null && player2 != null) {
