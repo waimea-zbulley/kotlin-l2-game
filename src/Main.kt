@@ -147,12 +147,11 @@ fun playTurn(player1: String, player2: String) {
         } else println("Invalid Spot")
     }
     checkBoxes(playerToken = "O")
-    showBoxes()
 
 }
 
-fun checkBoxes(playerToken: String) {
-
+fun checkBoxes(playerToken: String): Int {
+    var playerScoreAdd = 0
     // Loop to check if player1 has any valid chain reactions
     for (i in 1..boxes.size) {
         if (boxes[i] == playerToken) {
@@ -161,11 +160,16 @@ fun checkBoxes(playerToken: String) {
                 boxes[i] = "-"
                 boxes[i - 1] = "-"
                 boxes[i + 1] = "-"
+                playerScoreAdd += 3
             }
         }
         if (i == boxes.size - 1) {
             break
         }
     }
+    return playerScoreAdd
 }
 
+fun showScores(player1: String, player2: String) {
+
+}
