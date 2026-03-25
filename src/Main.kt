@@ -11,7 +11,7 @@
  * =====================================================================
  */
 
-val numBoxes = 12
+const val numBoxes = 12
 val boxes = mutableListOf<String>()
 
 fun main() {
@@ -52,6 +52,8 @@ fun showRules() {
 
 fun game() {
     val (player1, player2) = playerNames()
+    var player1Score = 0
+    var player2Score = 0
 
     createBoxes()
 
@@ -64,7 +66,10 @@ fun game() {
 
     showBoxes()
     while (true) {
-        playTurn(player1, player2)
+        showScore(player1, player2, player1Score, player2Score)
+        var (player1ScoreAdd, player2ScoreAdd) = playTurn(player1, player2)
+        player1Score += player1ScoreAdd
+        player2Score += player2ScoreAdd
     }
 
 }
@@ -124,8 +129,8 @@ fun playerNames(): Pair<String, String> {
     return Pair(player1, player2)
 }
 
-fun playTurn(player1: String, player2: String) {
-
+fun playTurn(player1: String, player2: String): Pair<Int, Int> {
+    var playerScoreAdd: Int
 
     while (true) {
         print("$player1's (X) turn please select what square you would like to place your token in (1-12): ")
@@ -135,7 +140,10 @@ fun playTurn(player1: String, player2: String) {
             break
         } else println("Invalid Spot")
     }
-    checkBoxes(playerToken = "X")
+    playerScoreAdd = checkBoxes(playerToken = "X")
+    val player1ScoreAdd = playerScoreAdd
+
+
     showBoxes()
 
     while (true) {
@@ -146,8 +154,10 @@ fun playTurn(player1: String, player2: String) {
             break
         } else println("Invalid Spot")
     }
-    checkBoxes(playerToken = "O")
+    playerScoreAdd = checkBoxes(playerToken = "O")
+    val player2ScoreAdd = playerScoreAdd
 
+    return Pair(player2ScoreAdd, player1ScoreAdd)
 }
 
 fun checkBoxes(playerToken: String): Int {
@@ -170,6 +180,6 @@ fun checkBoxes(playerToken: String): Int {
     return playerScoreAdd
 }
 
-fun showScores(player1: String, player2: String) {
-
+fun showScore(player1: String, player2: String, player1Score: Int, player2Score: Int) {
+    print("22")
 }
