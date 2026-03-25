@@ -135,6 +135,7 @@ fun playTurn(player1: String, player2: String) {
             break
         } else println("Invalid Spot")
     }
+    checkBoxes(playerToken = "X")
     showBoxes()
 
     while (true) {
@@ -145,6 +146,26 @@ fun playTurn(player1: String, player2: String) {
             break
         } else println("Invalid Spot")
     }
+    checkBoxes(playerToken = "O")
     showBoxes()
 
 }
+
+fun checkBoxes(playerToken: String) {
+
+    // Loop to check if player1 has any valid chain reactions
+    for (i in 1..boxes.size) {
+        if (boxes[i] == playerToken) {
+            if (boxes[i - 1] == playerToken && boxes[i + 1] == playerToken) {
+                println("Point")
+                boxes[i] = "-"
+                boxes[i - 1] = "-"
+                boxes[i + 1] = "-"
+            }
+        }
+        if (i == boxes.size - 1) {
+            break
+        }
+    }
+}
+
