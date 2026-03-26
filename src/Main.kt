@@ -157,6 +157,7 @@ fun playTurn(player1: String, player2: String): Pair<Int, Int> {
     playerScoreAdd = checkBoxes(playerToken = "O")
     val player2ScoreAdd = playerScoreAdd
 
+    showBoxes()
     return Pair(player2ScoreAdd, player1ScoreAdd)
 }
 
@@ -181,5 +182,5 @@ fun checkBoxes(playerToken: String): Int {
 }
 
 fun showScore(player1: String, player2: String, player1Score: Int, player2Score: Int) {
-    print("22")
+    println("")
 }
