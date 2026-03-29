@@ -67,9 +67,9 @@ fun game() {
     showBoxes()
     while (true) {
         showScore(player1, player2, player1Score, player2Score)
-        var (player1ScoreAdd, player2ScoreAdd) = playTurn(player1, player2)
-        player1Score += player1ScoreAdd
-        player2Score += player2ScoreAdd
+        var currentPlayer = player1
+        var currentPlayerToken = "X"
+        playTurn(currentPlayer, currentPlayerToken)
     }
 
 }
@@ -129,36 +129,20 @@ fun playerNames(): Pair<String, String> {
     return Pair(player1, player2)
 }
 
-fun playTurn(player1: String, player2: String): Pair<Int, Int> {
-    var playerScoreAdd: Int
+fun playTurn(currentPlayer: String, currentPlayerToken: String) {
 
     while (true) {
-        print("$player1's (X) turn please select what square you would like to place your token in (1-12): ")
+        print("$currentPlayer's ($currentPlayerToken) turn please select what square you would like to place your token in (1-12): ")
         val player1Turn = readln().toInt()
         if (boxes[player1Turn - 1] == "-") {
             boxes[player1Turn - 1] = "X"
             break
         } else println("Invalid Spot")
     }
-    playerScoreAdd = checkBoxesForChain(playerToken = "X")
-    val player1ScoreAdd = playerScoreAdd
+    //playerScoreAdd = checkBoxesForChain(playerToken = currentPlayerToken)
 
 
     showBoxes()
-
-    while (true) {
-        print("$player2's (O) turn please select what square you would like to place your token in (1-12): ")
-        val player2Turn = readln().toInt()
-        if (boxes[player2Turn - 1] == "-") {
-            boxes[player2Turn - 1] = "O"
-            break
-        } else println("Invalid Spot")
-    }
-    playerScoreAdd = checkBoxesForChain(playerToken = "O")
-    val player2ScoreAdd = playerScoreAdd
-
-    showBoxes()
-    return Pair(player2ScoreAdd, player1ScoreAdd)
 }
 
 fun checkBoxesForChain(playerToken: String): Int {
