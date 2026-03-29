@@ -140,7 +140,7 @@ fun playTurn(player1: String, player2: String): Pair<Int, Int> {
             break
         } else println("Invalid Spot")
     }
-    playerScoreAdd = checkBoxes(playerToken = "X")
+    playerScoreAdd = checkBoxesForChain(playerToken = "X")
     val player1ScoreAdd = playerScoreAdd
 
 
@@ -154,29 +154,37 @@ fun playTurn(player1: String, player2: String): Pair<Int, Int> {
             break
         } else println("Invalid Spot")
     }
-    playerScoreAdd = checkBoxes(playerToken = "O")
+    playerScoreAdd = checkBoxesForChain(playerToken = "O")
     val player2ScoreAdd = playerScoreAdd
 
     showBoxes()
     return Pair(player2ScoreAdd, player1ScoreAdd)
 }
 
-fun checkBoxes(playerToken: String): Int {
+fun checkBoxesForChain(playerToken: String): Int {
     var playerScoreAdd = 0
+    var count = 0
     // Loop to check if player1 has any valid chain reactions
-    for (i in 1..boxes.size) {
+    for (i in 0..<boxes.size) {
         if (boxes[i] == playerToken) {
-            if (boxes[i - 1] == playerToken && boxes[i + 1] == playerToken) {
-                println("Point")
+            count += 1
+        }
+        if (boxes[i] != playerToken && count >= 3) {
+            playerScoreAdd += count
+
+            while (count != 0) {
                 boxes[i] = "-"
-                boxes[i - 1] = "-"
-                boxes[i + 1] = "-"
-                playerScoreAdd += 3
+                boxes[i - (count)] = "-"
+
+                count -= 1
             }
+
+
         }
-        if (i == boxes.size - 1) {
-            break
+        if (boxes[i] != playerToken) {
+            count = 0
         }
+
     }
     return playerScoreAdd
 }
