@@ -65,7 +65,7 @@ fun game() {
     println("")
 
     showBoxes()
-    while (true) {
+    while (player1Score < 10 && player2Score < 10) {
         //showScore(player1, player2, player1Score, player2Score)
 
         var currentPlayer = player1
@@ -81,6 +81,13 @@ fun game() {
         player2Score += checkBoxesForChain(currentPlayerToken)
         showScore(player1, player2, player1Score, player2Score)
         showBoxes()
+    }
+    
+    if (player1Score > 10) {
+        println("$player1 Wins!")
+    }
+    if (player2Score > 10) {
+        println("$player2 Wins!")
     }
 
 }
