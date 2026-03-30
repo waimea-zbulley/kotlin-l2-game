@@ -82,7 +82,7 @@ fun game() {
         showScore(player1, player2, player1Score, player2Score)
         showBoxes()
     }
-    
+
     if (player1Score > 10) {
         println("$player1 Wins!")
     }
@@ -172,7 +172,7 @@ fun checkBoxesForChain(playerToken: String): Int {
             playerScoreAdd += count
 
             while (count != 0) {
-                boxes[i] = "-"
+                boxes[i - 1] = "-"
                 boxes[i - (count)] = "-"
 
                 count -= 1
