@@ -71,13 +71,15 @@ fun game() {
         var currentPlayer = player1
         var currentPlayerToken = "X"
         playTurn(currentPlayer, currentPlayerToken)
-        checkBoxesForChain(currentPlayerToken)
+        player1Score += checkBoxesForChain(currentPlayerToken)
+        showScore(player1, player2, player1Score, player2Score)
         showBoxes()
 
         currentPlayer = player2
         currentPlayerToken = "O"
         playTurn(currentPlayer, currentPlayerToken)
-        checkBoxesForChain(currentPlayerToken)
+        player2Score += checkBoxesForChain(currentPlayerToken)
+        showScore(player1, player2, player1Score, player2Score)
         showBoxes()
     }
 
@@ -180,5 +182,17 @@ fun checkBoxesForChain(playerToken: String): Int {
 }
 
 fun showScore(player1: String, player2: String, player1Score: Int, player2Score: Int) {
-    println("")
+    println("Scores")
+    print("┌────────────────────┐")
+    println("┌────────────────────┐")
+
+    print("│")
+    print(" $player1 : $player1Score".padEnd(20))
+    print("│")
+
+    print("│")
+    print(" $player2 : $player2Score".padEnd(20))
+    println("│")
+    print("└────────────────────┘")
+    println("└────────────────────┘")
 }
