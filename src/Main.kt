@@ -146,6 +146,11 @@ fun showBoxes() {
         print("───┴")
     }
     println("───┘")
+
+//    for (i in 0..<boxes.size) {
+//        print("${i + 1}".padEnd(2))
+//    }
+
 }
 
 fun playerNames(): Pair<String, String> {
@@ -171,7 +176,7 @@ fun playTurn(currentPlayer: String, currentPlayerToken: String, otherPlayerToken
         print("$currentPlayer's ($currentPlayerToken) turn please select what square you would like to place your token in (1-12): ")
         val turn = readln().toInt()
 
-        if (boxes[turn] == otherPlayerToken && boxes[turn - 2] == otherPlayerToken) {
+        if (turn in 2..<boxes.size - 1 && boxes[turn] == otherPlayerToken && boxes[turn - 2] == otherPlayerToken) {
             println("Invalid Spot")
         } else if (boxes[turn - 1] == "-") {
             boxes[turn - 1] = currentPlayerToken
