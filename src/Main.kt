@@ -55,7 +55,9 @@ fun game() {
     var player1Score = 0
     var player2Score = 0
     var currentPlayer = player1
+    var otherPlayer = player2
     var currentPlayerToken = "X"
+    var otherPlayerToken = "O"
 
     createBoxes()
 
@@ -71,19 +73,25 @@ fun game() {
         var scoreAdd = 0
 
         // Code for player turn
-        playTurn(currentPlayer, currentPlayerToken)
+        playTurn(currentPlayer, currentPlayerToken, otherPlayerToken)
+        checkBoxesForPushToken(currentPlayerToken, otherPlayerToken, currentPlayer, otherPlayer)
         scoreAdd += checkBoxesForChain(currentPlayerToken)
+
 
         // Code to switch player
         if (currentPlayer == player1) {
             player1Score += scoreAdd
             currentPlayer = player2
+            otherPlayer = player1
             currentPlayerToken = "O"
+            otherPlayerToken = "X"
 
         } else {
             player2Score += scoreAdd
             currentPlayer = player1
+            otherPlayer = player2
             currentPlayerToken = "X"
+            otherPlayerToken = "O"
         }
         showScore(player1, player2, player1Score, player2Score)
         showBoxes()
@@ -157,16 +165,11 @@ fun playerNames(): Pair<String, String> {
     return Pair(player1, player2)
 }
 
-fun playTurn(currentPlayer: String, currentPlayerToken: String) {
+fun playTurn(currentPlayer: String, currentPlayerToken: String, otherPlayerToken: String) {
 
     while (true) {
-
         print("$currentPlayer's ($currentPlayerToken) turn please select what square you would like to place your token in (1-12): ")
         val turn = readln().toInt()
-        var otherPlayerToken = "O"
-        if (currentPlayerToken == "O") {
-            otherPlayerToken = "X"
-        }
 
         if (boxes[turn] == otherPlayerToken && boxes[turn - 2] == otherPlayerToken) {
             println("Invalid Spot")
@@ -176,6 +179,20 @@ fun playTurn(currentPlayer: String, currentPlayerToken: String) {
         } else println("Invalid Spot")
     }
 
+}
+
+fun checkBoxesForPushToken(
+    currentPlayerToken: String,
+    otherPlayerToken: String,
+    currentPlayer: String,
+    otherPlayer: String
+) {
+    for (i in 1..<boxes.size - 1) {
+        if (boxes[i] == otherPlayerToken && boxes[i - 1] == currentPlayerToken && boxes[i + 1] == currentPlayerToken) {
+            println("$currentPlayer pushes out one of $otherPlayer's tokens")
+            boxes[i] = "-"
+        }
+    }
 }
 
 fun checkBoxesForChain(playerToken: String): Int {
@@ -199,7 +216,6 @@ fun checkBoxesForChain(playerToken: String): Int {
         if (boxes[i] != playerToken) {
             count = 0
         }
-
     }
     return playerScoreAdd
 }
