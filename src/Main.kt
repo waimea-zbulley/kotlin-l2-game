@@ -173,7 +173,7 @@ fun playerNames(): Pair<String, String> {
 fun playTurn(currentPlayer: String, currentPlayerToken: String, otherPlayerToken: String) {
 
     while (true) {
-        print("$currentPlayer's ($currentPlayerToken) turn please select what square you would like to place your token in (1-12): ")
+        print("$currentPlayer's ($currentPlayerToken) turn please select what square you would like to place your token in (1-${boxes.size}): ")
         val turn = readln().toInt()
 
         if (turn in 2..<boxes.size - 1 && boxes[turn] == otherPlayerToken && boxes[turn - 2] == otherPlayerToken) {
