@@ -54,6 +54,8 @@ fun game() {
     val (player1, player2) = playerNames()
     var player1Score = 0
     var player2Score = 0
+    var currentPlayer = player1
+    var currentPlayerToken = "X"
 
     createBoxes()
 
@@ -66,27 +68,31 @@ fun game() {
 
     showBoxes()
     while (player1Score < 10 && player2Score < 10) {
-        //showScore(player1, player2, player1Score, player2Score)
+        var scoreAdd = 0
 
-        var currentPlayer = player1
-        var currentPlayerToken = "X"
+        // Code for player turn
         playTurn(currentPlayer, currentPlayerToken)
-        player1Score += checkBoxesForChain(currentPlayerToken)
-        showScore(player1, player2, player1Score, player2Score)
-        showBoxes()
+        scoreAdd += checkBoxesForChain(currentPlayerToken)
 
-        currentPlayer = player2
-        currentPlayerToken = "O"
-        playTurn(currentPlayer, currentPlayerToken)
-        player2Score += checkBoxesForChain(currentPlayerToken)
+        // Code to switch player
+        if (currentPlayer == player1) {
+            player1Score += scoreAdd
+            currentPlayer = player2
+            currentPlayerToken = "O"
+
+        } else {
+            player2Score += scoreAdd
+            currentPlayer = player1
+            currentPlayerToken = "X"
+        }
         showScore(player1, player2, player1Score, player2Score)
         showBoxes()
     }
 
-    if (player1Score > 10) {
+    if (player1Score >= 10) {
         println("$player1 Wins!")
     }
-    if (player2Score > 10) {
+    if (player2Score >= 10) {
         println("$player2 Wins!")
     }
 
