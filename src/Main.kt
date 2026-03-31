@@ -90,10 +90,14 @@ fun game() {
     }
 
     if (player1Score >= 10) {
+        println("")
         println("$player1 Wins!")
+        println("")
     }
     if (player2Score >= 10) {
+        println("")
         println("$player2 Wins!")
+        println("")
     }
 
 }
