@@ -160,14 +160,22 @@ fun playerNames(): Pair<String, String> {
 fun playTurn(currentPlayer: String, currentPlayerToken: String) {
 
     while (true) {
+
         print("$currentPlayer's ($currentPlayerToken) turn please select what square you would like to place your token in (1-12): ")
         val turn = readln().toInt()
-        if (boxes[turn - 1] == "-") {
+        var otherPlayerToken = "O"
+        if (currentPlayerToken == "O") {
+            otherPlayerToken = "X"
+        }
+
+        if (boxes[turn] == otherPlayerToken && boxes[turn - 2] == otherPlayerToken) {
+            println("Invalid Spot")
+        } else if (boxes[turn - 1] == "-") {
             boxes[turn - 1] = currentPlayerToken
             break
         } else println("Invalid Spot")
     }
-    //playerScoreAdd = checkBoxesForChain(playerToken = currentPlayerToken)
+
 }
 
 fun checkBoxesForChain(playerToken: String): Int {
@@ -187,8 +195,6 @@ fun checkBoxesForChain(playerToken: String): Int {
 
                 count -= 1
             }
-
-
         }
         if (boxes[i] != playerToken) {
             count = 0
