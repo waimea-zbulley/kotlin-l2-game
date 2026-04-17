@@ -48,7 +48,32 @@ fun getUserActionMenu(): Char {
 }
 
 fun showRules() {
-    println("Rules")
+    println("──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────")
+    println(
+        "### Game Setup\n" +
+                "\n" +
+                "- A row of 12 squares, numbered 1 to 12 from left to right\n" +
+                "- The board starts empty\n" +
+                "- Both players have a supply of 'bombs' (counters) in their own colour\n" +
+                "- Decide who goes first\n" +
+                "\n" +
+                "### Gameplay\n" +
+                "\n" +
+                "- Players take turns - You may not skip your turn\n" +
+                "- On your turn you must place one of your bombs on an empty square, but ...\n" +
+                "- You cannot place your bomb directly between two opponent bombs since it would immediately be 'defused' (see the defuse\n" +
+                "  rule below)\n" +
+                "- After placing, the following rules apply (in order):\n" +
+                "    - Defuse rule:  if any opponent bomb now has one of your bombs on each side, it is 'defused' and removed from the\n" +
+                "      board (note: two bombs can be defused in one go)\n" +
+                "    - Chain reaction rule: if your bomb creates an unbroken chain of 3 or more of your own bombs, the entire chain '\n" +
+                "      explodes' - all bombs in the chain are removed and you score points equal to the length of the chain\n" +
+                "\n" +
+                "### Win Condition\n" +
+                "\n" +
+                "- The first player to reach 10 points wins"
+    )
+    println("──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────")
 }
 
 fun game() {

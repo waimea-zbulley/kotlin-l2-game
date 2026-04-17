@@ -1,6 +1,6 @@
-# PROJECT NAME HERE
+# Chain Reaction
 
-by YOUR NAME HERE
+by Zach Bulley
 
 ---
 
