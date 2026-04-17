@@ -199,9 +199,15 @@ fun playTurn(currentPlayer: String, currentPlayerToken: String, otherPlayerToken
 
     while (true) {
         print("$currentPlayer's ($currentPlayerToken) turn please select what square you would like to place your token in (1-${boxes.size}): ")
-        val turn = readln().toInt()
+        val turn = readln().toIntOrNull()
 
-        if (turn in 2..<boxes.size - 1 && boxes[turn] == otherPlayerToken && boxes[turn - 2] == otherPlayerToken) {
+        if (turn == null) {
+            println("Invalid input")
+        } else if (turn > numBoxes) {
+            println("Position does not exist (value too high)")
+        } else if (turn < 1) {
+            println("Position does not exist (value too low)")
+        } else if (turn in 2..<boxes.size - 1 && boxes[turn] == otherPlayerToken && boxes[turn - 2] == otherPlayerToken) {
             println("Invalid Spot")
         } else if (boxes[turn - 1] == "-") {
             boxes[turn - 1] = currentPlayerToken
@@ -254,7 +260,7 @@ fun checkBoxesForChain(playerToken: String): Int {
 fun showScore(player1: String, player2: String, player1Score: Int, player2Score: Int) {
     println("Scores")
     print("┌────────────────────┐")
-    println("┌────────────────────┐")
+    println("┌───────────────────┐")
 
     print("│")
     print(" $player1 : $player1Score".padEnd(20))
