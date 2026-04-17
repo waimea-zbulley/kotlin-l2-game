@@ -2,7 +2,7 @@
  * =====================================================================
  * Programming Project for NCEA Level 2, Standard 91896
  * ---------------------------------------------------------------------
- * Project Name:   PROJECT NAME HERE
+ * Project Name:   Chain Reaction
  * Project Author: PROJECT AUTHOR HERE
  * GitHub Repo:    GITHUB REPO URL HERE
  * ---------------------------------------------------------------------
@@ -11,6 +11,7 @@
  * =====================================================================
  */
 
+const val winScore = 10
 const val numBoxes = 12
 val boxes = mutableListOf<String>()
 
@@ -51,7 +52,8 @@ fun showRules() {
 }
 
 fun game() {
-    val (player1, player2) = playerNames()
+    val player1 = playerNames("player 1")
+    val player2 = playerNames("player 2")
     var player1Score = 0
     var player2Score = 0
     var currentPlayer = player1
@@ -69,7 +71,7 @@ fun game() {
     println("")
 
     showBoxes()
-    while (player1Score < 10 && player2Score < 10) {
+    while (player1Score < winScore && player2Score < winScore) {
         var scoreAdd = 0
 
         // Code for player turn
@@ -97,12 +99,12 @@ fun game() {
         showBoxes()
     }
 
-    if (player1Score >= 10) {
+    if (player1Score >= winScore) {
         println("")
         println("$player1 Wins!")
         println("")
     }
-    if (player2Score >= 10) {
+    if (player2Score >= winScore) {
         println("")
         println("$player2 Wins!")
         println("")
@@ -153,21 +155,19 @@ fun showBoxes() {
 
 }
 
-fun playerNames(): Pair<String, String> {
-    var player1: String?
-    var player2: String?
+fun playerNames(currentPlayer: String): String {
+    var playerInput: String?
 
     while (true) {
-        print("Player 1 name: ")
-        player1 = readlnOrNull()
-        print("Player 2 name: ")
-        player2 = readlnOrNull()
+        print("$currentPlayer name: ")
+        playerInput = readlnOrNull()
 
-        if (player1 != null && player2 != null) {
-            break
-        }
+        if (playerInput == null) {
+            println("Player name cannot be null")
+        } else if (playerInput.length > 14) {
+            println("Player name too long")
+        } else return playerInput
     }
-    return Pair(player1, player2)
 }
 
 fun playTurn(currentPlayer: String, currentPlayerToken: String, otherPlayerToken: String) {
@@ -203,12 +203,13 @@ fun checkBoxesForPushToken(
 fun checkBoxesForChain(playerToken: String): Int {
     var playerScoreAdd = 0
     var count = 0
+    val minChainLeng = 3
     // Loop to check if player1 has any valid chain reactions
     for (i in 0..<boxes.size) {
         if (boxes[i] == playerToken) {
             count += 1
         }
-        if (boxes[i] != playerToken && count >= 3) {
+        if (boxes[i] != playerToken && count >= minChainLeng) {
             playerScoreAdd += count
 
             while (count != 0) {
