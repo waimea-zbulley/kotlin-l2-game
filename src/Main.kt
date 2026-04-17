@@ -260,7 +260,7 @@ fun checkBoxesForChain(playerToken: String): Int {
 fun showScore(player1: String, player2: String, player1Score: Int, player2Score: Int) {
     println("Scores")
     print("┌────────────────────┐")
-    println("┌───────────────────┐")
+    println("┌────────────────────┐")
 
     print("│")
     print(" $player1 : $player1Score".padEnd(20))
