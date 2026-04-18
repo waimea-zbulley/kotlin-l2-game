@@ -12,7 +12,7 @@
  */
 
 const val winScore = 10
-const val numBoxes = 12
+const val numBoxes = 12 //max of 99 for proper formating
 val boxes = mutableListOf<String>()
 
 fun main() {
@@ -173,6 +173,11 @@ fun showBoxes() {
         print("───┴")
     }
     println("───┘")
+
+    for (i in 1..<numBoxes) {
+        print("  $i".padEnd(4))
+    }
+    println("  $numBoxes")
 
 //    for (i in 0..<boxes.size) {
 //        print("${i + 1}".padEnd(2))
