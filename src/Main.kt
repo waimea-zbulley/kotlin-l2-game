@@ -15,6 +15,24 @@ const val winScore = 10
 const val numBoxes = 12 //max of 99 for proper formating
 val boxes = mutableListOf<String>()
 
+//class Pet(
+//    val name: String,
+//    var age: Int
+//)
+//
+//fun test() {
+//    val pet1 = Pet("Dave", 12)
+//    val pet2 = Pet("Kevin", 13)
+//
+//    var currentPet = pet1
+//
+//    println(currentPet.name)
+//
+//    if (currentPet == pet1)
+//}
+
+
+
 fun main() {
     println("Welcome to Chain Reaction!")
     println("--------------------------")
@@ -179,10 +197,6 @@ fun showBoxes() {
     }
     println("  $numBoxes")
 
-//    for (i in 0..<boxes.size) {
-//        print("${i + 1}".padEnd(2))
-//    }
-
 }
 
 fun playerNames(currentPlayer: String): String {
@@ -206,20 +220,15 @@ fun playTurn(currentPlayer: String, currentPlayerToken: String, otherPlayerToken
         print("$currentPlayer's ($currentPlayerToken) turn please select what square you would like to place your token in (1-${boxes.size}): ")
         val turn = readln().toIntOrNull()
 
-        if (turn == null) {
-            println("Invalid input")
-        } else if (turn > numBoxes) {
-            println("Position does not exist (value too high)")
-        } else if (turn < 1) {
-            println("Position does not exist (value too low)")
-        } else if (turn in 2..<boxes.size - 1 && boxes[turn] == otherPlayerToken && boxes[turn - 2] == otherPlayerToken) {
-            println("Invalid Spot")
-        } else if (boxes[turn - 1] == "-") {
-            boxes[turn - 1] = currentPlayerToken
-            break
-        } else println("Invalid Spot")
+        when {
+            turn == null -> println("Invalid input")
+            turn > numBoxes -> println("Position does not exist (value too high)")
+            turn < 1 -> println("Position does not exist (value too low)")
+            turn in 2..<boxes.size - 1 && boxes[turn] == otherPlayerToken && boxes[turn - 2] == otherPlayerToken -> println("Invalid Spot")
+            boxes[turn - 1] == "-" -> boxes[turn - 1] = currentPlayerToken
+            else -> println("Invalid Spot")
     }
-
+        break
 }
 
 fun checkBoxesForPushToken(
