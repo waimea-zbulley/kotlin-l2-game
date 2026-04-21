@@ -174,8 +174,8 @@ fun showBoxes(player1Token: String, player2Token: String) {
     for (i in boxes) {
         print("│")
         when {
-            i == player1Token -> print(" $i ".col(123, 217, 208))
-            i == player2Token -> print(" $i ".col(0, 200, 25))
+            i == player1Token -> print(" $i ".col(255, 255, 0))
+            i == player2Token -> print(" $i ".col(214, 11, 168))
             else -> print(" $i ".padEnd(3))
         }
     }
@@ -213,7 +213,10 @@ fun playerNames(currentPlayer: String): String {
 fun playTurn(currentPlayer: String, currentPlayerToken: String, otherPlayerToken: String) {
 
     while (true) {
-        print("$currentPlayer's ($currentPlayerToken) turn please select what square you would like to place your token in (1-${boxes.size}): ")
+        when {
+            currentPlayer =
+        }
+        print("$currentPlayer's".col(255, 255, 0) + " turn please select what square you would like to place your token in (1-${boxes.size}): ")
         val turn = readln().toIntOrNull()
 
         when {
@@ -281,7 +284,7 @@ fun showScore(player1: String, player2: String, player1Score: Int, player2Score:
     println("┌────────────────────┐")
 
     print("│")
-    print(" $player1 : ${player1Score.toString().padEnd(16 - player1.length).col(123, 217, 208)}")
+    print(" $player1 : ${player1Score.toString().padEnd(16 - player1.length).col(255, 255, 0)}")
     print("│")
 
     print("│")
