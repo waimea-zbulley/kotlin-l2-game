@@ -214,7 +214,7 @@ fun playTurn(currentPlayer: String, currentPlayerToken: String, otherPlayerToken
             turn == null -> println("Invalid input")
             turn > numBoxes -> println("Position does not exist (value too high)")
             turn < 1 -> println("Position does not exist (value too low)")
-            // Need to check thqt...
+            // Need to check that...
             turn in 2..<boxes.size - 1 && boxes[turn] == otherPlayerToken && boxes[turn - 2] == otherPlayerToken -> println(
                 "Invalid Spot"
             )
