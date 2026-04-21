@@ -173,9 +173,9 @@ fun showBoxes(player1Token: String, player2Token: String) {
     // Prints the middle section of boxes
     for (i in boxes) {
         print("│")
-        when {
-            i == player1Token -> print(" $i ".col(255, 255, 0))
-            i == player2Token -> print(" $i ".col(214, 11, 168))
+        when (i) {
+            player1Token -> print(" $i ".col(255, 255, 0))
+            player2Token -> print(" $i ".col(214, 11, 168))
             else -> print(" $i ".padEnd(3))
         }
     }
