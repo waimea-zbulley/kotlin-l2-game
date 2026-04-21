@@ -118,7 +118,7 @@ fun game() {
     while (player1Score < winScore && player2Score < winScore) {
         var scoreAdd = 0
         // Code for player turn
-        playTurn(currentPlayer, currentPlayerToken, otherPlayerToken)
+        playTurn(currentPlayer, currentPlayerToken, otherPlayerToken, player1Token, player2Token)
         checkBoxesForPushToken(currentPlayerToken, otherPlayerToken, currentPlayer, otherPlayer)
         scoreAdd += checkBoxesForChain(currentPlayerToken)
 
@@ -210,13 +210,28 @@ fun playerNames(currentPlayer: String): String {
     }
 }
 
-fun playTurn(currentPlayer: String, currentPlayerToken: String, otherPlayerToken: String) {
+fun playTurn(
+    currentPlayer: String,
+    currentPlayerToken: String,
+    otherPlayerToken: String,
+    player1Token: String,
+    player2Token: String
+) {
 
     while (true) {
-        when {
-            currentPlayer =
+        when (currentPlayerToken) {
+            player1Token -> print(
+                "$currentPlayer's".col(
+                    255, 255, 0
+                ) + " turn please select what square you would like to place your token in (1-${boxes.size}): "
+            )
+
+            player2Token -> print(
+                "$currentPlayer's".col(
+                    214, 11, 168
+                ) + " turn please select what square you would like to place your token in (1-${boxes.size}): "
+            )
         }
-        print("$currentPlayer's".col(255, 255, 0) + " turn please select what square you would like to place your token in (1-${boxes.size}): ")
         val turn = readln().toIntOrNull()
 
         when {
