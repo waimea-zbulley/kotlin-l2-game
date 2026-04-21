@@ -96,12 +96,14 @@ fun showRules() {
 fun game() {
     val player1 = playerNames("player 1")
     val player2 = playerNames("player 2")
+    val player1Token = "X"
+    val player2Token = "O"
     var player1Score = 0
     var player2Score = 0
     var currentPlayer = player1
     var otherPlayer = player2
-    var currentPlayerToken = "X"
-    var otherPlayerToken = "O"
+    var currentPlayerToken = player1Token
+    var otherPlayerToken = player2Token
 
     createBoxes()
 
@@ -112,7 +114,7 @@ fun game() {
 
     println("")
 
-    showBoxes()
+    showBoxes(player1Token, player2Token)
     while (player1Score < winScore && player2Score < winScore) {
         var scoreAdd = 0
         // Code for player turn
@@ -136,7 +138,7 @@ fun game() {
             otherPlayerToken = "O"
         }
         showScore(player1, player2, player1Score, player2Score)
-        showBoxes()
+        showBoxes(player1Token, player2Token)
 
 
         checkForPlayerWin(currentPlayer = player1, currentPlayerScore = player1Score)
@@ -156,7 +158,7 @@ fun createBoxes() {
     }
 }
 
-fun showBoxes() {
+fun showBoxes(player1Token: String, player2Token: String) {
 
     // Returns if list is empty in order to not print only ending and starting segments of boxes
     if (boxes.isEmpty()) return
@@ -171,7 +173,11 @@ fun showBoxes() {
     // Prints the middle section of boxes
     for (i in boxes) {
         print("│")
-        print(" $i".padEnd(3))
+        when {
+            i == player1Token -> print(" $i ".col(123, 217, 208))
+            i == player2Token -> print(" $i ".col(0, 200, 25))
+            else -> print(" $i ".padEnd(3))
+        }
     }
     println("│")
 
@@ -275,11 +281,11 @@ fun showScore(player1: String, player2: String, player1Score: Int, player2Score:
     println("┌────────────────────┐")
 
     print("│")
-    print(" $player1 : $player1Score".padEnd(20))
+    print(" $player1 : ${player1Score.toString().padEnd(16 - player1.length).col(123, 217, 208)}")
     print("│")
 
     print("│")
-    print(" $player2 : $player2Score".padEnd(20))
+    print(" $player2 : ${player2Score.toString().padEnd(16 - player2.length).col(214, 11, 168)}")
     println("│")
     print("└────────────────────┘")
     println("└────────────────────┘")
