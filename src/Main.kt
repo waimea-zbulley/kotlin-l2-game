@@ -172,7 +172,7 @@ fun showBoxes() {
 
     // Prints the top section of boxes
     print("┌")
-    for (i in 1..<boxes.size) {
+    repeat(boxes.size) {
         print("───┬")
     }
     println("───┐")
@@ -186,7 +186,7 @@ fun showBoxes() {
 
     // Prints the bottom section of boxes
     print("└")
-    for (i in 1..<boxes.size) {
+    repeat(boxes.size) {
         print("───┴")
     }
     println("───┘")
