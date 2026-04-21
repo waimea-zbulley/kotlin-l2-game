@@ -32,7 +32,6 @@ val boxes = mutableListOf<String>()
 //}
 
 
-
 fun main() {
     println("Welcome to Chain Reaction!")
     println("--------------------------")
@@ -224,11 +223,19 @@ fun playTurn(currentPlayer: String, currentPlayerToken: String, otherPlayerToken
             turn == null -> println("Invalid input")
             turn > numBoxes -> println("Position does not exist (value too high)")
             turn < 1 -> println("Position does not exist (value too low)")
-            turn in 2..<boxes.size - 1 && boxes[turn] == otherPlayerToken && boxes[turn - 2] == otherPlayerToken -> println("Invalid Spot")
-            boxes[turn - 1] == "-" -> boxes[turn - 1] = currentPlayerToken
+            // Need to check thqt...
+            turn in 2..<boxes.size - 1 && boxes[turn] == otherPlayerToken && boxes[turn - 2] == otherPlayerToken -> println(
+                "Invalid Spot"
+            )
+            // Only make move if blank
+            boxes[turn - 1] == "-" -> {
+                boxes[turn - 1] = currentPlayerToken
+                break
+            }
+
             else -> println("Invalid Spot")
+        }
     }
-        break
 }
 
 fun checkBoxesForPushToken(
