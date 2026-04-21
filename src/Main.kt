@@ -115,7 +115,6 @@ fun game() {
     showBoxes()
     while (player1Score < winScore && player2Score < winScore) {
         var scoreAdd = 0
-
         // Code for player turn
         playTurn(currentPlayer, currentPlayerToken, otherPlayerToken)
         checkBoxesForPushToken(currentPlayerToken, otherPlayerToken, currentPlayer, otherPlayer)
@@ -129,7 +128,6 @@ fun game() {
             otherPlayer = player1
             currentPlayerToken = "O"
             otherPlayerToken = "X"
-
         } else {
             player2Score += scoreAdd
             currentPlayer = player1
@@ -139,17 +137,10 @@ fun game() {
         }
         showScore(player1, player2, player1Score, player2Score)
         showBoxes()
-    }
 
-    if (player1Score >= winScore) {
-        println("")
-        println("$player1 Wins!")
-        println("")
-    }
-    if (player2Score >= winScore) {
-        println("")
-        println("$player2 Wins!")
-        println("")
+
+        checkForPlayerWin(currentPlayer = player1, currentPlayerScore = player1Score)
+        checkForPlayerWin(currentPlayer = player2, currentPlayerScore = player2Score)
     }
 
 }
@@ -172,7 +163,7 @@ fun showBoxes() {
 
     // Prints the top section of boxes
     print("┌")
-    repeat(boxes.size) {
+    repeat(boxes.size - 1) {
         print("───┬")
     }
     println("───┐")
@@ -186,7 +177,7 @@ fun showBoxes() {
 
     // Prints the bottom section of boxes
     print("└")
-    repeat(boxes.size) {
+    repeat(boxes.size - 1) {
         print("───┴")
     }
     println("───┘")
@@ -292,4 +283,12 @@ fun showScore(player1: String, player2: String, player1Score: Int, player2Score:
     println("│")
     print("└────────────────────┘")
     println("└────────────────────┘")
+}
+
+fun checkForPlayerWin(currentPlayer: String, currentPlayerScore: Int) {
+    if (currentPlayerScore >= winScore) {
+        println("")
+        println("$currentPlayer Wins!")
+        println("")
+    }
 }
