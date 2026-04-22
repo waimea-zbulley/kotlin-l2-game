@@ -89,7 +89,7 @@ fun game() {
     )
 
     val player1 = Player(name = playerNames("Player 1"), token = player1Token, score = 0)
-    val player2 = Player(name = playerNames("Player 1"), token = player2Token, score = 0)
+    val player2 = Player(name = playerNames("Player 2"), token = player2Token, score = 0)
 
     var otherPlayer = player2
     var otherPlayerToken = player2Token
@@ -262,22 +262,24 @@ fun checkBoxesForChain(playerToken: String): Int {
     val minChainLeng = 3
     // Loop to check if player1 has any valid chain reactions
     for (i in 0..<boxes.size) {
-        if (boxes[i] == playerToken) {
-            count += 1
-        }
-        if (boxes[i] != playerToken && count >= minChainLeng) {
-            playerScoreAdd += count
+        when {
+            boxes[i] == playerToken -> count += 1
+            boxes[i] != playerToken && count >= minChainLeng -> {
+                playerScoreAdd += count
 
-            while (count != 0) {
-                boxes[i - 1] = "-"
-                boxes[i - (count)] = "-"
+                while (count != 0) {
+                    boxes[i - 1] = "-"
+                    boxes[i - (count)] = "-"
 
-                count -= 1
+                    count -= 1
+                }
             }
+        
         }
         if (boxes[i] != playerToken) {
             count = 0
         }
+
     }
     return playerScoreAdd
 }
