@@ -99,7 +99,7 @@ fun game() {
     createBoxes()
 
     println("──────────────────────────────")
-    println("Hello $player1 & $player2!")
+    println("Hello ${player1.name} & ${player2.name}!")
     println("${player1.name} will play as X")
     println("${player2.name} will play as O")
 
