@@ -255,25 +255,24 @@ fun checkBoxesForChain(currentPlayer: Player): Int {
     val minChainLeng = 3
     // Loop to check if player1 has any valid chain reactions
     for (i in 0..<boxes.size) {
-        when {
-            boxes[i] == playerToken -> count += 1
-            boxes[i] != playerToken && count >= minChainLeng -> {
-                playerScoreAdd += count
-
-                while (count != 0) {
-                    boxes[i - 1] = "-"
-                    boxes[i - (count)] = "-"
-
-                    count -= 1
-                }
-            }
-        
+        if (boxes[i] == currentPlayer.token) {
+            count += 1
         }
-        if (boxes[i] != playerToken) {
+        if (boxes[i] != currentPlayer.token && count >= minChainLeng) {
+            playerScoreAdd += count
+
+            while (count != 0) {
+                boxes[i - 1] = "-"
+                boxes[i - (count)] = "-"
+
+                count -= 1
+            }
+        }
+        if (boxes[i] != currentPlayer.token) {
             count = 0
         }
-
     }
+
     return playerScoreAdd
 }
 
