@@ -94,8 +94,8 @@ fun showRules() {
 }
 
 fun game() {
-    val player1 = playerNames("player 1")
-    val player2 = playerNames("player 2")
+    val player1 = playerNames("Player 1")
+    val player2 = playerNames("Player 2")
     val player1Token = "X"
     val player2Token = "O"
     var player1Score = 0
