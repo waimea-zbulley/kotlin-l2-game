@@ -17,23 +17,6 @@ val boxes = mutableListOf<String>()
 const val player1Colour = "#FFFF00"
 const val player2Colour = "#D60BA8"
 
-//class Pet(
-//    val name: String,
-//    var age: Int
-//)
-//
-//fun test() {
-//    val pet1 = Pet("Dave", 12)
-//    val pet2 = Pet("Kevin", 13)
-//
-//    var currentPet = pet1
-//
-//    println(currentPet.name)
-//
-//    if (currentPet == pet1)
-//}
-
-
 fun main() {
     println("Welcome to Chain Reaction!")
     println("--------------------------")
