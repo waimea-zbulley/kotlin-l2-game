@@ -13,7 +13,7 @@ too.
 The game functions correctly and meets the specification:
 
 - [x] The game is **playable**
-- [ ] The **instructions** for the game are available in-game
+- [x] The **instructions** for the game are available in-game
 - [x] **Two players** can play
 - [x] Player **names** are used to identify each player
 - [x] Players **take turns** to play
@@ -40,8 +40,8 @@ The program structure:
 
 The program code:
 
-- [ ] Is **indented** correctly
-- [ ] Is **laid-out clearly**
+- [x] Is **indented** correctly
+- [x] Is **laid-out clearly**
 - [ ] Contains **comments** that help in understanding how it works
 
 ### Program Testing
@@ -110,11 +110,11 @@ Program flexibility and maintainability is aided by:
 
 Program flexibility and maintainability is aided by good program structure:
 
-- [ ] Conditions, branching, loops and functions are used **effectively**
-- [ ] Procedures are **efficient** (minimal iterations, etc.)
-- [ ] **Minimal duplication of code** (instead using loops, or having multiple calls to a single function)
-- [ ] Functions are **well-chosen and logical**, with a clearly defined purpose
-- [ ] The functions chosen represent a **logical decomposition** of the task
+- [x] Conditions, branching, loops and functions are used **effectively**
+- [x] Procedures are **efficient** (minimal iterations, etc.)
+- [x] **Minimal duplication of code** (instead using loops, or having multiple calls to a single function)
+- [x] Functions are **well-chosen and logical**, with a clearly defined purpose
+- [x] The functions chosen represent a **logical decomposition** of the task
 
 ### Program Documentation
 
