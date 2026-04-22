@@ -96,55 +96,63 @@ fun showRules() {
 }
 
 fun game() {
-    val player1 = playerNames("Player 1")
-    val player2 = playerNames("Player 2")
     val player1Token = "X"
     val player2Token = "O"
-    var player1Score = 0
-    var player2Score = 0
-    var currentPlayer = player1
+
+    data class Player(
+        val token: String,
+        var score: Int,
+        val name: String
+    )
+
+    val player1 = Player(name = playerNames("Player 1"), token = player1Token, score = 0)
+    val player2 = Player(name = playerNames("Player 1"), token = player2Token, score = 0)
+
     var otherPlayer = player2
-    var currentPlayerToken = player1Token
     var otherPlayerToken = player2Token
+
+    var currentPlayer = player1
 
     createBoxes()
 
     println("──────────────────────────────")
     println("Hello $player1 & $player2!")
-    println("$player1 will play as X")
-    println("$player2 will play as O")
+    println("${player1.name} will play as X")
+    println("${player2.name} will play as O")
 
     println("")
 
     showBoxes(player1Token, player2Token)
-    while (player1Score < winScore && player2Score < winScore) {
+    while (player1.score < winScore && player2.score < winScore) {
         var scoreAdd = 0
         // Code for player turn
-        playTurn(currentPlayer, currentPlayerToken, otherPlayerToken, player1Token, player2Token)
-        checkBoxesForPushToken(currentPlayerToken, otherPlayerToken, currentPlayer, otherPlayer)
-        scoreAdd += checkBoxesForChain(currentPlayerToken)
+        playTurn(currentPlayer.name, currentPlayer.token, otherPlayerToken, player1Token, player2Token)
+        checkBoxesForPushToken(currentPlayer.token, otherPlayerToken, currentPlayer.name, otherPlayer.name)
+        scoreAdd += checkBoxesForChain(currentPlayer.token)
 
 
         // Code to switch player
         if (currentPlayer == player1) {
-            player1Score += scoreAdd
+            currentPlayer.score += scoreAdd
+
             currentPlayer = player2
             otherPlayer = player1
-            currentPlayerToken = "O"
             otherPlayerToken = "X"
         } else {
-            player2Score += scoreAdd
+            currentPlayer.score += scoreAdd
+
             currentPlayer = player1
             otherPlayer = player2
-            currentPlayerToken = "X"
             otherPlayerToken = "O"
         }
-        showScore(player1, player2, player1Score, player2Score)
+
+
+        showScore(player1.name, player2.name, player1.score, player2.score)
         showBoxes(player1Token, player2Token)
 
 
-        checkForPlayerWin(currentPlayer = player1, currentPlayerScore = player1Score)
-        checkForPlayerWin(currentPlayer = player2, currentPlayerScore = player2Score)
+        checkForPlayerWin(currentPlayer = player1.name, currentPlayerScore = player1.score)
+        checkForPlayerWin(currentPlayer = player2.name, currentPlayerScore = player1.score)
     }
 
 }
