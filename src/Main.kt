@@ -203,9 +203,9 @@ fun playerNames(currentPlayer: String): String {
         playerInput = readlnOrNull()
 
         if (playerInput == null) {
-            println("Player name cannot be null")
+            println("Player name cannot be null".red())
         } else if (playerInput.length > 14) {
-            println("Player name too long")
+            println("Player name too long".red())
         } else return playerInput
     }
 }
@@ -235,12 +235,12 @@ fun playTurn(
         val turn = readln().toIntOrNull()
 
         when {
-            turn == null -> println("Invalid input")
-            turn > numBoxes -> println("Position does not exist (value too high)")
-            turn < 1 -> println("Position does not exist (value too low)")
+            turn == null -> println("Invalid input".red())
+            turn > numBoxes -> println("Position does not exist (value too high)".red())
+            turn < 1 -> println("Position does not exist (value too low)".red())
             // Need to check that...
             turn in 2..<boxes.size - 1 && boxes[turn] == otherPlayerToken && boxes[turn - 2] == otherPlayerToken -> println(
-                "Invalid Spot"
+                "Invalid Spot".red()
             )
             // Only make move if blank
             boxes[turn - 1] == "-" -> {
