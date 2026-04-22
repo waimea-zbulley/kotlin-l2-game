@@ -248,7 +248,7 @@ fun playTurn(
                 break
             }
 
-            else -> println("Invalid Spot")
+            else -> println("Invalid Spot".red())
         }
     }
 }
