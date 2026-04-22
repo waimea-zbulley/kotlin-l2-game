@@ -14,6 +14,8 @@
 const val winScore = 10
 const val numBoxes = 12 //max of 99 for proper formating
 val boxes = mutableListOf<String>()
+const val player1Colour = "#FFFF00"
+const val player2Colour = "#D60BA8"
 
 //class Pet(
 //    val name: String,
@@ -174,8 +176,8 @@ fun showBoxes(player1Token: String, player2Token: String) {
     for (i in boxes) {
         print("│")
         when (i) {
-            player1Token -> print(" $i ".col(255, 255, 0))
-            player2Token -> print(" $i ".col(214, 11, 168))
+            player1Token -> print(" $i ".col(hex = player1Colour))
+            player2Token -> print(" $i ".col(hex = player2Colour))
             else -> print(" $i ".padEnd(3))
         }
     }
@@ -221,15 +223,11 @@ fun playTurn(
     while (true) {
         when (currentPlayerToken) {
             player1Token -> print(
-                "$currentPlayer's".col(
-                    255, 255, 0
-                ) + " turn please select what square you would like to place your token in (1-${boxes.size}): "
+                "$currentPlayer's".col(hex = player1Colour) + " turn please select what square you would like to place your token in (1-${boxes.size}): "
             )
 
             player2Token -> print(
-                "$currentPlayer's".col(
-                    214, 11, 168
-                ) + " turn please select what square you would like to place your token in (1-${boxes.size}): "
+                "$currentPlayer's".col(hex = player2Colour) + " turn please select what square you would like to place your token in (1-${boxes.size}): "
             )
         }
         val turn = readln().toIntOrNull()
@@ -299,11 +297,11 @@ fun showScore(player1: String, player2: String, player1Score: Int, player2Score:
     println("┌────────────────────┐")
 
     print("│")
-    print(" $player1 : ${player1Score.toString().padEnd(16 - player1.length).col(255, 255, 0)}")
+    print(" $player1 : ${player1Score.toString().padEnd(16 - player1.length).col(hex = player1Colour)}")
     print("│")
 
     print("│")
-    print(" $player2 : ${player2Score.toString().padEnd(16 - player2.length).col(214, 11, 168)}")
+    print(" $player2 : ${player2Score.toString().padEnd(16 - player2.length).col(hex = player2Colour)}")
     println("│")
     print("└────────────────────┘")
     println("└────────────────────┘")
