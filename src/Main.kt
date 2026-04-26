@@ -14,13 +14,12 @@
 const val winScore = 10
 const val numBoxes = 12 //max of 99 for proper formating
 val boxes = mutableListOf<String>()
-const val player1Colour = "#FFFF00"
-const val player2Colour = "#D60BA8"
 
 data class Player(
     val token: String,
     var score: Int,
-    val name: String
+    val name: String,
+    val colour: String
 )
 
 
@@ -88,8 +87,8 @@ fun showRules() {
 fun game() {
     val player1Token = "X"
     val player2Token = "O"
-    val player1 = Player(name = playerNames("Player 1"), token = player1Token, score = 0)
-    val player2 = Player(name = playerNames("Player 2"), token = player2Token, score = 0)
+    val player1 = Player(name = playerNames("Player 1"), token = player1Token, score = 0, colour = "#FFFF00")
+    val player2 = Player(name = playerNames("Player 2"), token = player2Token, score = 0, colour = "#D60BA8")
 
     var otherPlayer = player2
     var currentPlayer = player1
@@ -111,7 +110,6 @@ fun game() {
         checkBoxesForPushToken(currentPlayer, otherPlayer)
         scoreAdd += checkBoxesForChain(currentPlayer)
 
-
         // Code to switch player
         if (currentPlayer == player1) {
             currentPlayer.score += scoreAdd
@@ -125,10 +123,8 @@ fun game() {
             otherPlayer = player2
         }
 
-
         showScore(player1, player2)
         showBoxes(player1, player2)
-
 
         checkForPlayerWin(player1)
         checkForPlayerWin(player2)
@@ -163,8 +159,8 @@ fun showBoxes(player1: Player, player2: Player) {
     for (i in boxes) {
         print("│")
         when (i) {
-            player1.token -> print(" $i ".col(hex = player1Colour))
-            player2.token -> print(" $i ".col(hex = player2Colour))
+            player1.token -> print(" $i ".col(hex = player1.colour))
+            player2.token -> print(" $i ".col(hex = player2.colour))
             else -> print(" $i ".padEnd(3))
         }
     }
@@ -209,11 +205,11 @@ fun playTurn(
     while (true) {
         when (currentPlayer.token) {
             player1.token -> print(
-                "${currentPlayer.name}'s".col(hex = player1Colour) + " turn please select what square you would like to place your token in (1-${boxes.size}): "
+                "${currentPlayer.name}'s".col(hex = currentPlayer.colour) + " turn please select what square you would like to place your token in (1-${boxes.size}): "
             )
 
             player2.token -> print(
-                "${currentPlayer.name}'s".col(hex = player2Colour) + " turn please select what square you would like to place your token in (1-${boxes.size}): "
+                "${currentPlayer.name}'s".col(hex = currentPlayer.colour) + " turn please select what square you would like to place your token in (1-${boxes.size}): "
             )
         }
         val turn = readln().toIntOrNull()
@@ -298,11 +294,11 @@ fun showScore(player1: Player, player2: Player) {
     println("┌────────────────────┐")
 
     print("│")
-    print(" ${player1.name} : ${player1.score.toString().padEnd(16 - player1.name.length).col(hex = player1Colour)}")
+    print(" ${player1.name} : ${player1.score.toString().padEnd(16 - player1.name.length).col(hex = player1.colour)}")
     print("│")
 
     print("│")
-    print(" ${player2.name} : ${player2.score.toString().padEnd(16 - player2.name.length).col(hex = player2Colour)}")
+    print(" ${player2.name} : ${player2.score.toString().padEnd(16 - player2.name.length).col(hex = player2.colour)}")
     println("│")
     print("└────────────────────┘")
     println("└────────────────────┘")
@@ -311,7 +307,7 @@ fun showScore(player1: Player, player2: Player) {
 fun checkForPlayerWin(currentPlayer: Player) {
     if (currentPlayer.score >= winScore) {
         println("")
-        println("${currentPlayer.name} Wins!")
+        println("${currentPlayer.name.col(hex = currentPlayer.colour)} Wins!")
         println("")
     }
 }
