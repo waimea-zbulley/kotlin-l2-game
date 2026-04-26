@@ -130,8 +130,8 @@ fun game() {
         showBoxes(player1, player2)
 
 
-        checkForPlayerWin(currentPlayer = player1.name, currentPlayerScore = player1.score)
-        checkForPlayerWin(currentPlayer = player2.name, currentPlayerScore = player1.score)
+        checkForPlayerWin(player1)
+        checkForPlayerWin(player2)
     }
 
 }
@@ -217,6 +217,7 @@ fun playTurn(
             )
         }
         val turn = readln().toIntOrNull()
+        println()
 
         when {
             turn == null -> println("Invalid input".red())
@@ -233,6 +234,7 @@ fun playTurn(
             }
 
             else -> println("Invalid Spot".red())
+
         }
     }
 }
@@ -251,29 +253,70 @@ fun checkBoxesForPushToken(
 
 fun checkBoxesForChain(currentPlayer: Player): Int {
     var playerScoreAdd = 0
-    var count = 0
     val minChainLeng = 3
-    // Loop to check if player1 has any valid chain reactions
+    var inChain = false
+    var chainStartPos = -1
+    var biggestChain = 0
+    var currentChainLeng = 0
+
     for (i in 0..<boxes.size) {
-        if (boxes[i] == currentPlayer.token) {
-            count += 1
+        if (i == boxes.size - 1 && inChain && boxes[i] == currentPlayer.token) {
+            currentChainLeng += 1
+            println(currentChainLeng)
+            currentChainLeng = biggestChain
         }
-        if (boxes[i] != currentPlayer.token && count >= minChainLeng) {
-            playerScoreAdd += count
-
-            while (count != 0) {
-                boxes[i - 1] = "-"
-                boxes[i - (count)] = "-"
-
-                count -= 1
-            }
+        if (boxes[i] == currentPlayer.token && !inChain) {
+            chainStartPos = i
+            inChain = true
+            currentChainLeng += 1
+            println(currentChainLeng)
+            continue
         }
-        if (boxes[i] != currentPlayer.token) {
-            count = 0
+        if (boxes[i] == currentPlayer.token && inChain) {
+            currentChainLeng += 1
+            println(currentChainLeng)
+        }
+        if (boxes[i] != currentPlayer.token && inChain) {
+            biggestChain = currentChainLeng
+            currentChainLeng = 0
+            println(currentChainLeng)
+            inChain = false
+        }
+        if (biggestChain >= minChainLeng) {
+            break
         }
     }
 
+    if (biggestChain >= minChainLeng) {
+        playerScoreAdd = biggestChain
+        boxes[chainStartPos] = "-"
+        for (i in 1..<biggestChain) {
+            boxes[chainStartPos + i] = "-"
+        }
+    }
     return playerScoreAdd
+
+
+    // Loop to check if player1 has any valid chain reactions
+//    for (i in 0..<boxes.size) {
+//        if (boxes[i] == currentPlayer.token) {
+//            count += 1
+//        }
+//        if (boxes[i] != currentPlayer.token && count >= minChainLeng) {
+//            playerScoreAdd += count
+//
+//            while (count != 0) {
+//                boxes[i - 1] = "-"
+//                boxes[i - (count)] = "-"
+//
+//                count -= 1
+//            }
+//        }
+//        if (boxes[i] != currentPlayer.token) {
+//            count = 0
+//        }
+//    }
+//
 }
 
 fun showScore(player1: Player, player2: Player) {
@@ -292,10 +335,10 @@ fun showScore(player1: Player, player2: Player) {
     println("└────────────────────┘")
 }
 
-fun checkForPlayerWin(currentPlayer: String, currentPlayerScore: Int) {
-    if (currentPlayerScore >= winScore) {
+fun checkForPlayerWin(currentPlayer: Player) {
+    if (currentPlayer.score >= winScore) {
         println("")
-        println("$currentPlayer Wins!")
+        println("${currentPlayer.name} Wins!")
         println("")
     }
 }
