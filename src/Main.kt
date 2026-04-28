@@ -11,10 +11,11 @@
  * =====================================================================
  */
 
-const val winScore = 10
-const val numBoxes = 12 //max of 99 for proper formating
-val boxes = mutableListOf<String>()
+const val winScore = 10 // The score the player is required to reach in order to win
+const val numBoxes = 12 // Max of 99 for proper formating. This is how many boxes for the playing area
+val boxes = mutableListOf<String>() // The list for storing the values of the boxes
 
+// Data class for defining all of the players variables/values.
 data class Player(
     val token: String,
     var score: Int,
@@ -22,7 +23,7 @@ data class Player(
     val colour: String
 )
 
-
+// Main function for introducing name and checking user action.
 fun main() {
     println("Welcome to Chain Reaction!")
     println("--------------------------")
@@ -30,14 +31,14 @@ fun main() {
     while (true) {
         val action = getUserActionMenu()
         when (action) {
-            'R' -> showRules()
-            'P' -> game()
-            'Q' -> break
+            'R' -> showRules() // R = rules
+            'P' -> game()      // P = play
+            'Q' -> break       // Q = quit
         }
     }
 }
 
-
+// Print's menu and get input for user choice on starting game/reading rules/ quiting
 fun getUserActionMenu(): Char {
     println("What would you like to do?")
     println("[R]ules")
@@ -55,6 +56,7 @@ fun getUserActionMenu(): Char {
     }
 }
 
+// Function to show the rules of the game
 fun showRules() {
     println("──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────")
     println(
@@ -84,6 +86,7 @@ fun showRules() {
     println("──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────")
 }
 
+// Main game function for adding score and running all other functions related to the game.
 fun game() {
     val player1Token = "X"
     val player2Token = "O"
@@ -106,7 +109,7 @@ fun game() {
     while (player1.score < winScore && player2.score < winScore) {
         var scoreAdd = 0
         // Code for player turn
-        playTurn(currentPlayer, otherPlayer, player1, player2)
+        playTurn(currentPlayer, otherPlayer)
         checkBoxesForPushToken(currentPlayer, otherPlayer)
         scoreAdd += checkBoxesForChain(currentPlayer)
 
@@ -132,6 +135,7 @@ fun game() {
 
 }
 
+// Function for adding the boxes to the boxes list
 fun createBoxes() {
 
     // Sets the list to be clear for a new game
@@ -143,6 +147,7 @@ fun createBoxes() {
     }
 }
 
+// Function for displaying the contents of the box list
 fun showBoxes(player1: Player, player2: Player) {
 
     // Returns if list is empty in order to not print only ending and starting segments of boxes
@@ -180,6 +185,7 @@ fun showBoxes(player1: Player, player2: Player) {
 
 }
 
+// Function for getting player's names
 fun playerNames(currentPlayer: String): String {
     var playerInput: String?
 
@@ -195,23 +201,15 @@ fun playerNames(currentPlayer: String): String {
     }
 }
 
+// Function for getting the input for the player's turn & asking what square they would like to put their peice in
 fun playTurn(
     currentPlayer: Player,
-    otherPlayer: Player,
-    player1: Player,
-    player2: Player
+    otherPlayer: Player
 ) {
 
     while (true) {
-        when (currentPlayer.token) {
-            player1.token -> print(
-                "${currentPlayer.name}'s".col(hex = currentPlayer.colour) + " turn please select what square you would like to place your token in (1-${boxes.size}): "
-            )
 
-            player2.token -> print(
-                "${currentPlayer.name}'s".col(hex = currentPlayer.colour) + " turn please select what square you would like to place your token in (1-${boxes.size}): "
-            )
-        }
+        print("${currentPlayer.name}'s".col(hex = currentPlayer.colour) + " turn please select what square you would like to place your token in (1-${boxes.size}): ")
         val turn = readln().toIntOrNull()
 
         when {
@@ -235,18 +233,26 @@ fun playTurn(
     }
 }
 
+// Function for checking whether a player has pushed another player's token out
 fun checkBoxesForPushToken(
     currentPlayer: Player,
     otherPlayer: Player
 ) {
     for (i in 1..<boxes.size - 1) {
         if (boxes[i] == otherPlayer.token && boxes[i - 1] == currentPlayer.token && boxes[i + 1] == currentPlayer.token) {
-            println("${currentPlayer.name} pushes out one of ${otherPlayer.name}'s tokens")
+            println(
+                "${currentPlayer.name.col(currentPlayer.colour)} pushes out one of ${
+                    otherPlayer.name.col(
+                        otherPlayer.colour
+                    )
+                }'s tokens"
+            )
             boxes[i] = "-"
         }
     }
 }
 
+// Checks whether the player has formed a chain and returns the value of how much score to add to the player
 fun checkBoxesForChain(currentPlayer: Player): Int {
     var inChain = false
     var startPosition = -1
@@ -256,25 +262,37 @@ fun checkBoxesForChain(currentPlayer: Player): Int {
     val minChainLeng = 3
 
     for (i in 0..<boxes.size) {
+        // If the biggest detected chain is bigger than minimum chain length break out of the loop (as only one chain can be formed at once)
         if (biggestChainLeng >= minChainLeng) {
             break
-        } else if (boxes[i] == currentPlayer.token && !inChain) {
+        }
+        // Check if the player is not and a chain and if they are not currently in a chain (then start a chain if true)
+        else if (boxes[i] == currentPlayer.token && !inChain) {
             inChain = true
             currentChainLeng = 1
             startPosition = i
-        } else if (i == boxes.size - 1 && boxes[i] == currentPlayer.token) {
+        }
+        // If last square of boxes is the players token sets the current chain length + 1 to be the biggest chain length
+        else if (i == boxes.size - 1 && boxes[i] == currentPlayer.token) {
             biggestChainLeng = currentChainLeng + 1
-        } else if (i == boxes.size - 1 && boxes[i] != currentPlayer.token) {
+        }
+        // If last square of boxes is not the players token sets the current chain length to be the biggest chain length
+        else if (i == boxes.size - 1 && boxes[i] != currentPlayer.token) {
             biggestChainLeng = currentChainLeng
-        } else if (boxes[i] == currentPlayer.token && inChain) {
+        }
+        // Adds one to chain length if player is in a chain and current token in the players token
+        else if (boxes[i] == currentPlayer.token && inChain) {
             currentChainLeng++
-        } else if (boxes[i] != currentPlayer.token && inChain) {
+        }
+        // If player is in a chain and the token is not theirs set them to not be in a chain and set the biggest chain to be current chain length
+        else if (boxes[i] != currentPlayer.token && inChain) {
             inChain = false
             biggestChainLeng = currentChainLeng
             currentChainLeng = 0
         }
     }
 
+    // If the biggest chain length is more than the minimum chain length add that value to player score and reset the tokens in the chain
     if (biggestChainLeng >= minChainLeng) {
         playerScoreAdd = biggestChainLeng
         boxes[startPosition] = "-"
@@ -283,9 +301,7 @@ fun checkBoxesForChain(currentPlayer: Player): Int {
         }
     }
 
-
     return playerScoreAdd
-
 }
 
 fun showScore(player1: Player, player2: Player) {
