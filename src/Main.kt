@@ -3,7 +3,7 @@
  * Programming Project for NCEA Level 2, Standard 91896
  * ---------------------------------------------------------------------
  * Project Name:   Chain Reaction
- * Project Author: PROJECT AUTHOR HERE
+ * Project Author: Zach Bulley
  * GitHub Repo:    GITHUB REPO URL HERE
  * ---------------------------------------------------------------------
  * Notes:
@@ -97,8 +97,8 @@ fun game() {
 
     println("──────────────────────────────")
     println("Hello ${player1.name} & ${player2.name}!")
-    println("${player1.name} will play as X")
-    println("${player2.name} will play as O")
+    println("${player1.name.col(player1.colour)} will play as ${player1.token.col(player1.colour)}")
+    println("${player2.name.col(player2.colour)} will play as ${player2.token.col(player2.colour)}")
 
     println("")
 
@@ -213,7 +213,6 @@ fun playTurn(
             )
         }
         val turn = readln().toIntOrNull()
-        println()
 
         when {
             turn == null -> println("Invalid input".red())
@@ -226,6 +225,7 @@ fun playTurn(
             // Only make move if blank
             boxes[turn - 1] == "-" -> {
                 boxes[turn - 1] = currentPlayer.token
+                println()
                 break
             }
 
