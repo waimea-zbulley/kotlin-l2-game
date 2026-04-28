@@ -304,15 +304,19 @@ fun checkBoxesForChain(currentPlayer: Player): Int {
     return playerScoreAdd
 }
 
+// Shows the players scores in drawing boxes
 fun showScore(player1: Player, player2: Player) {
+    // Print's the top part of the boxes
     println("Scores")
     print("┌────────────────────┐")
     println("┌────────────────────┐")
 
+    // Print's the middle part of the boxes
     print("│")
     print(" ${player1.name} : ${player1.score.toString().padEnd(16 - player1.name.length).col(hex = player1.colour)}")
     print("│")
 
+    // Print's the bottom part of the boxes
     print("│")
     print(" ${player2.name} : ${player2.score.toString().padEnd(16 - player2.name.length).col(hex = player2.colour)}")
     println("│")
@@ -320,6 +324,8 @@ fun showScore(player1: Player, player2: Player) {
     println("└────────────────────┘")
 }
 
+
+// Checks if the player has won and print's if they have
 fun checkForPlayerWin(currentPlayer: Player) {
     if (currentPlayer.score >= winScore) {
         println("")
