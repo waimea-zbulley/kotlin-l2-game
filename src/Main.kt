@@ -47,9 +47,11 @@ fun getUserActionMenu(): Char {
     var choice: Char?
 
     while (true) {
+        // Getting players input
         print("Choice: ")
         choice = readlnOrNull()?.firstOrNull()?.uppercaseChar()
 
+        //Error checking
         if (choice != null && choice in "RPQ") {
             return choice
         }
@@ -190,13 +192,16 @@ fun playerNames(currentPlayer: String): String {
     var playerInput: String?
 
     while (true) {
+        // Getting player input
         print("$currentPlayer name: ")
         playerInput = readlnOrNull()
 
         if (playerInput == null) {
             println("Player name cannot be null".red())
-        } else if (playerInput.length > 14) {
-            println("Player name too long".red())
+        }
+        // Checking if player name is too long
+        else if (playerInput.length > 14) {
+            println("Player name too long, please enter a name less than 15 characters.".red())
         } else return playerInput
     }
 }
@@ -214,11 +219,14 @@ fun playTurn(
 
         when {
             turn == null -> println("Invalid input".red())
+
+            // Error checking for values greater or less than the amount of boxes
             turn > numBoxes -> println("Position does not exist (value too high)".red())
             turn < 1 -> println("Position does not exist (value too low)".red())
-            // Need to check that...
+
+            // Checks if the other player is blocking the spot
             turn in 2..<boxes.size - 1 && boxes[turn] == otherPlayer.token && boxes[turn - 2] == otherPlayer.token -> println(
-                "Invalid Spot".red()
+                "Invalid Spot (${otherPlayer.name} is blocking you)".red()
             )
             // Only make move if blank
             boxes[turn - 1] == "-" -> {
@@ -228,7 +236,6 @@ fun playTurn(
             }
 
             else -> println("Invalid Spot".red())
-
         }
     }
 }
