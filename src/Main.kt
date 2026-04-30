@@ -198,6 +198,8 @@ fun playerNames(currentPlayer: String): String {
 
         if (playerInput == null) {
             println("Player name cannot be null".red())
+        } else if (playerInput.isBlank()) {
+            println("Player name cannot be blank".red())
         }
         // Checking if player name is too long
         else if (playerInput.length > 14) {
