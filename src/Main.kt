@@ -4,7 +4,7 @@
  * ---------------------------------------------------------------------
  * Project Name:   Chain Reaction
  * Project Author: Zach Bulley
- * GitHub Repo:    GITHUB REPO URL HERE
+ * GitHub Repo:    https://github.com/waimea-zbulley/kotlin-l2-game
  * ---------------------------------------------------------------------
  * Notes:
  * PROJECT NOTES HERE
@@ -89,6 +89,7 @@ fun showRules() {
 }
 
 // Main game function for adding score and running all other functions related to the game.
+// This function will run until one of the players win
 fun game() {
     val player1Token = "X"
     val player2Token = "O"

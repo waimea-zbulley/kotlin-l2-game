@@ -4,9 +4,10 @@ The test results show the actual outcome of the testing, following the [Test Pla
 
 ---
 
-## Chain at end of board
+## Example Test Name
 
-Forming a chain of 3 in the last 3 boxes of play board.
+Example test description. Example test description.Example test description. Example test description.Example test
+description. Example test description.
 
 ### Test Data Used
 
@@ -15,7 +16,7 @@ test data. Details of test data.
 
 ### Test Result
 
-![example.png](screenshots/2026-04-22-210048_hyprshot.png)
+![example.png](screenshots/example.png)
 
 The chain failed to break
 
