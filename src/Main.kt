@@ -191,6 +191,7 @@ fun showBoxes(player1: Player, player2: Player) {
 // Function for getting player's names
 fun playerNames(currentPlayer: String): String {
     var playerInput: String?
+    val maxPlayerNameLeng = 14
 
     while (true) {
         // Getting player input
@@ -203,7 +204,7 @@ fun playerNames(currentPlayer: String): String {
             println("Player name cannot be blank".red())
         }
         // Checking if player name is too long
-        else if (playerInput.length > 14) {
+        else if (playerInput.length > maxPlayerNameLeng) {
             println("Player name too long, please enter a name less than 15 characters.".red())
         } else return playerInput
     }
