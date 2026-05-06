@@ -16,7 +16,7 @@ I will attempt to play the game from the main menu
 
 ### Test Data To Use
 
-I will input the character 'p'
+I will input the character **'p'**
 
 ### Expected Test Result
 
@@ -30,7 +30,7 @@ I will attempt to show the rules from the main menu
 
 ### Test Data To Use
 
-I will input the character 'r'
+I will input the character **'r'**
 
 ### Expected Test Result
 
@@ -44,7 +44,7 @@ I will attempt to quit the game from the main menu
 
 ### Test Data To Use
 
-I will input the character 'q'
+I will input the character **'q'**
 
 ### Expected Test Result
 
@@ -58,11 +58,11 @@ I will attempt to input several invalid inputs to the main menu
 
 ### Test Data To Use
 
-I will input the values 'l', 'ghr' as well as blank
+I will input the values **'l'**, **'ghr'** as well as **blank**
 
 ### Expected Test Result
 
-Asks the user again to input a input
+Reject the input and ask for an input again
 
 ---
 
@@ -72,7 +72,7 @@ I will attempt to play the game with more characters after the initial
 
 ### Test Data To Use
 
-I will input the string "pfdg"
+I will input the string **"pfdg"**
 
 ### Expected Test Result
 
@@ -82,11 +82,11 @@ The game should start
 
 ## Input: Main menu (play game) using uppercase char - Valid
 
-I will attempt to play the game
+I will attempt to play the game using an uppercase character to start the game
 
 ### Test Data To Use
 
-I will input the character 'P'
+I will input the character **'P'**
 
 ### Expected Test Result
 
@@ -116,8 +116,8 @@ I will test when the player name is the maximum characters (14) as well as the m
 
 I will test the inputs
 
-- "a" (player 1)
-- "Alexanderjames" (player 2)
+- **"a"** (player 1)
+- **"Alexanderjames"** (player 2)
 
 ### Expected Test Result
 
@@ -133,8 +133,8 @@ I will test invalid player names (when blank and too long)
 
 I will test the inputs
 
-- " "
-- "JefferyJefferson"
+- **" "**
+- **"JefferyJefferson"**
 
 ### Expected Test Result
 
@@ -150,9 +150,9 @@ I will test placing player tokens in valid locations
 
 I will test the inputs
 
-- '2'
-- '10'
-- '7'
+- **'2'**
+- **'10'**
+- **'7'**
 
 ### Expected Test Result
 
@@ -168,8 +168,8 @@ I will test placing player tokens in boundary locations
 
 I will test the inputs
 
-- '1'
-- "12"
+- **'1'**
+- **"12"**
 
 ### Expected Test Result
 
@@ -185,12 +185,12 @@ I will test invalid inputs for player counter selection
 
 I will test the inputs:
 
-- "0"
-- "-5"
-- "13"
-- "784"
-- " "
-- Dave
+- **"0"**
+- **"-5"**
+- **"13"**
+- **"784"**
+- **" "**
+- **"Dave"**
 
 ### Expected Test Result
 
@@ -206,9 +206,9 @@ I will attempt to place a token in a valid location
 
 I will test the inputs
 
-- '2'
-- '10'
-- '7'
+- **'2'**
+- **'10'**
+- **'7'**
 
 ### Expected Test Result
 
@@ -216,7 +216,7 @@ A token should be placed
 
 ---
 
-## Gameplay: Placing a token
+## Gameplay: Placing a token - Boundary
 
 I will attempt to place tokens at boundary locations
 
@@ -224,8 +224,8 @@ I will attempt to place tokens at boundary locations
 
 I will test the inputs
 
-- '1'
-- "12"
+- **'1'**
+- **"12"**
 
 ### Expected Test Result
 
@@ -239,11 +239,11 @@ I will test forming a chain of 3
 
 ### Test Data To Use
 
-I will play Bob's tokens in slot 4, 5 and 6
+I will play Bob's tokens in slot **4**, **5** and **6**
 
 ### Expected Test Result
 
-A chain should form
+A chain should form (the players pieces removed from the board)
 
 ---
 
@@ -257,7 +257,7 @@ I will play Bob's tokens in slot 4, 5, 7 and 6
 
 ### Expected Test Result
 
-A chain should form and Bob should gain 3 points
+A chain should form and the players pieces should be removed
 
 ---
 
@@ -267,11 +267,12 @@ I will form a chain at the start of the board
 
 ### Test Data To Use
 
-I will play Bob's tokens in slot 1, 2 and 3
+I will play Bob's tokens in slot **1**, **2** and **3**
 
 ### Expected Test Result
 
-A chain should form and bob should gain 3 points
+A chain should form and the players pieces should be removed
+
 
 ---
 
@@ -281,11 +282,11 @@ I will form a chain at the end of the board
 
 ### Test Data To Use
 
-I will play Bob's tokens in slot 10, 11, 12
+I will play Bob's tokens in slot **10**, **11**, **12**
 
 ### Expected Test Result
 
-A chain should form and Bob should gain 3 points
+A chain should form and the players pieces should be removed
 
 ---
 
@@ -295,7 +296,7 @@ When the game starts the board should form
 
 ### Test Data To Use
 
-Play from the main menu
+Play from the main menu (entering the second players name to start the game "Dave")
 
 ### Expected Test Result
 
@@ -313,7 +314,7 @@ I will form a chain in position 4, 5 and 6
 
 ### Expected Test Result
 
-Bob should gain score
+Bob should gain score (3 points)
 
 ---
 
@@ -327,7 +328,7 @@ I will test when bob reaches 10 points
 
 ### Expected Test Result
 
-Bob should win
+Bob should win (and the game should go back to the main menu)
 
 ---
 
@@ -341,7 +342,7 @@ I will test when bob reaches 11 points
 
 ### Expected Test Result
 
-Bob should win
+Bob should win (and the game should go back to the main menu)
 
 ---
 
@@ -370,56 +371,5 @@ I will attempt to put Dave's token in slot 5 when Bob's tokens are in 4 and 6
 ### Expected Test Result
 
 The game should reject the move and inform them the place is invalid
-
----
-
-## Example Test Name
-
-Example test description. Example test description. Example test description. Example test description. Example test
-description. Example test description.
-
-### Test Data To Use
-
-Details of test data and reasons for selection. Details of test data and reasons for selection. Details of test data and
-reasons for selection.
-
-### Expected Test Result
-
-Statement detailing what should happen. Statement detailing what should happen. Statement detailing what should happen.
-Statement detailing what should happen.
-
----
-
-## Example Test Name
-
-Example test description. Example test description. Example test description. Example test description. Example test
-description. Example test description.
-
-### Test Data To Use
-
-Details of test data and reasons for selection. Details of test data and reasons for selection. Details of test data and
-reasons for selection.
-
-### Expected Test Result
-
-Statement detailing what should happen. Statement detailing what should happen. Statement detailing what should happen.
-Statement detailing what should happen.
-
----
-
-## Example Test Name
-
-Example test description. Example test description. Example test description. Example test description. Example test
-description. Example test description.
-
-### Test Data To Use
-
-Details of test data and reasons for selection. Details of test data and reasons for selection. Details of test data and
-reasons for selection.
-
-### Expected Test Result
-
-Statement detailing what should happen. Statement detailing what should happen. Statement detailing what should happen.
-Statement detailing what should happen.
 
 ---
