@@ -202,6 +202,7 @@ fun playerNames(currentPlayer: String): String {
         print("$currentPlayer name: ")
         playerInput = readlnOrNull()
 
+        // Error checking
         if (playerInput == null) {
             println("Player name cannot be null".red())
         } else if (playerInput.isBlank()) {

@@ -10,7 +10,7 @@ The development log captures key moments in your application development:
 
 ---
 
-## Date: 24/04/20xx
+## Date: 24/04/2026
 
 Fixed a bug to do with chains not forming at the end of the board to do with the way i was detecting the chains.
 
