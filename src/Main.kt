@@ -18,6 +18,7 @@ val boxes = mutableListOf<String>() // The list for storing the values of the bo
 const val blankToken = "-" // Token to use for the blank space
 
 // Data class for defining all of the players variables/values.
+// This is done to make the data regarding the player clearer
 data class Player(
     val token: String,
     var score: Int,
