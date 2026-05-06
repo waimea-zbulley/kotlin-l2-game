@@ -10,9 +10,16 @@ The development log captures key moments in your application development:
 
 ---
 
+## Date: 24/04/20xx
+
+Fixed a bug to do with chains not forming at the end of the board to do with the way i was detecting the chains.
+
+---
+
 ## Date: xx/xx/20xx
 
-Example description and notes. Example description and notes. Example description and notes. Example description and notes. Example description and notes. Example description and notes.
+Example description and notes. Example description and notes. Example description and notes. Example description and
+notes. Example description and notes. Example description and notes.
 
 ![example.png](screenshots/example.png)
 
@@ -20,7 +27,8 @@ Example description and notes. Example description and notes. Example descriptio
 
 ## Date: xx/xx/20xx
 
-Example description and notes. Example description and notes. Example description and notes. Example description and notes. Example description and notes. Example description and notes.
+Example description and notes. Example description and notes. Example description and notes. Example description and
+notes. Example description and notes. Example description and notes.
 
 ![example.png](screenshots/example.png)
 
@@ -28,7 +36,8 @@ Example description and notes. Example description and notes. Example descriptio
 
 ## Date: xx/xx/20xx
 
-Example description and notes. Example description and notes. Example description and notes. Example description and notes. Example description and notes. Example description and notes.
+Example description and notes. Example description and notes. Example description and notes. Example description and
+notes. Example description and notes. Example description and notes.
 
 ![example.png](screenshots/example.png)
 
@@ -36,15 +45,8 @@ Example description and notes. Example description and notes. Example descriptio
 
 ## Date: xx/xx/20xx
 
-Example description and notes. Example description and notes. Example description and notes. Example description and notes. Example description and notes. Example description and notes.
-
-![example.png](screenshots/example.png)
-
----
-
-## Date: xx/xx/20xx
-
-Example description and notes. Example description and notes. Example description and notes. Example description and notes. Example description and notes. Example description and notes.
+Example description and notes. Example description and notes. Example description and notes. Example description and
+notes. Example description and notes. Example description and notes.
 
 ![example.png](screenshots/example.png)
 

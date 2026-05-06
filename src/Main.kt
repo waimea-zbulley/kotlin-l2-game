@@ -15,6 +15,8 @@ const val winScore = 10 // The score the player is required to reach in order to
 const val numBoxes = 12 // Max of 99 for proper formating. This is how many boxes for the playing area
 val boxes = mutableListOf<String>() // The list for storing the values of the boxes
 
+const val blankToken = "-" // Token to use for the blank space
+
 // Data class for defining all of the players variables/values.
 data class Player(
     val token: String,
@@ -23,7 +25,8 @@ data class Player(
     val colour: String
 )
 
-// Main function for introducing name and checking user action.
+// Main function for introducing game name and checking user action.
+// This function used for calling the main game function or rules function (or quiting)
 fun main() {
     println("Welcome to Chain Reaction!")
     println("--------------------------")
@@ -39,6 +42,7 @@ fun main() {
 }
 
 // Print's menu and get input for user choice on starting game/reading rules/ quiting
+// I have used this function to get the users input for the main menu
 fun getUserActionMenu(): Char {
     println("What would you like to do?")
     println("[R]ules")
@@ -146,7 +150,7 @@ fun createBoxes() {
 
     // Adds the empty values for boxes
     repeat(numBoxes) {
-        boxes.add("-")
+        boxes.add(blankToken)
     }
 }
 
@@ -210,7 +214,8 @@ fun playerNames(currentPlayer: String): String {
     }
 }
 
-// Function for getting the input for the player's turn & asking what square they would like to put their peice in
+// Function for getting the input for the player's turn & asking what square they would like to put their piece in
+// This function is for managing the players turn
 fun playTurn(
     currentPlayer: Player,
     otherPlayer: Player
@@ -233,7 +238,7 @@ fun playTurn(
                 "Invalid Spot (${otherPlayer.name} is blocking you)".red()
             )
             // Only make move if blank
-            boxes[turn - 1] == "-" -> {
+            boxes[turn - 1] == blankToken -> {
                 boxes[turn - 1] = currentPlayer.token
                 println()
                 break
@@ -258,19 +263,19 @@ fun checkBoxesForPushToken(
                     )
                 }'s tokens"
             )
-            boxes[i] = "-"
+            boxes[i] = blankToken
         }
     }
 }
 
 // Checks whether the player has formed a chain and returns the value of how much score to add to the player
 fun checkBoxesForChain(currentPlayer: Player): Int {
-    var inChain = false
-    var startPosition = -1
-    var currentChainLeng = 0
-    var biggestChainLeng = 0
-    var playerScoreAdd = 0
-    val minChainLeng = 3
+    var inChain = false // Whether the player is in a chain
+    var startPosition = -1 // Invalid start position set in order to signify a chain has not yet started
+    var currentChainLeng = 0 // Length of the current chain
+    var biggestChainLeng = 0 // Length of the biggest chain
+    var playerScoreAdd = 0 // The amount of score to add to the player
+    val minChainLeng = 3 // The minimum length that a chain can be
 
     for (i in 0..<boxes.size) {
         // If the biggest detected chain is bigger than minimum chain length break out of the loop (as only one chain can be formed at once)
@@ -306,16 +311,16 @@ fun checkBoxesForChain(currentPlayer: Player): Int {
     // If the biggest chain length is more than the minimum chain length add that value to player score and reset the tokens in the chain
     if (biggestChainLeng >= minChainLeng) {
         playerScoreAdd = biggestChainLeng
-        boxes[startPosition] = "-"
+        boxes[startPosition] = blankToken
         for (i in 1..<biggestChainLeng) {
-            boxes[startPosition + i] = "-"
+            boxes[startPosition + i] = blankToken
         }
     }
 
-    return playerScoreAdd
+    return playerScoreAdd // Returns the amount of score to add to the player
 }
 
-// Shows the players scores in drawing boxes
+// Shows the players scores
 fun showScore(player1: Player, player2: Player) {
     // Print's the top part of the boxes
     println("Scores")
