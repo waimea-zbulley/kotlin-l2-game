@@ -4,15 +4,13 @@ The test results show the actual outcome of the testing, following the [Test Pla
 
 ---
 
-## Example Test Name
+## Input: Player Names - Valid
 
-Example test description. Example test description.Example test description. Example test description.Example test
-description. Example test description.
+I will test that a valid player name can be entered and accepted
 
-### Test Data Used
+### Test Data To Use
 
-Details of test data. Details of test data. Details of test data. Details of test data. Details of test data. Details of
-test data. Details of test data.
+I will try to enter a valid player names Dave, Bob for player 1 and 2
 
 ### Test Result
 

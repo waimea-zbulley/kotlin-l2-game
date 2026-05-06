@@ -62,7 +62,7 @@ I will input the values 'l', 'ghr' as well as blank
 
 ### Expected Test Result
 
-It should inform the user that it is an invalid input and ask again
+Asks the user again to input a input
 
 ---
 
@@ -110,7 +110,7 @@ The names should be accepted
 
 ## Input: Player names - Boundary
 
-I will test when the player name is the maximum charchters (14) as well as the minimum (1)
+I will test when the player name is the maximum characters (14) as well as the minimum (1)
 
 ### Test Data To Use
 
@@ -198,7 +198,7 @@ The values should be rejected and an error should be shown to the user depending
 
 ---
 
-## Gameplay: Placing a token - Valid
+## Gameplay: Placing a token
 
 I will attempt to place a token in a valid location
 
@@ -216,7 +216,7 @@ A token should be placed
 
 ---
 
-## Gameplay: Placing a token - Boundary
+## Gameplay: Placing a token
 
 I will attempt to place tokens at boundary locations
 
@@ -233,7 +233,7 @@ A token should be placed
 
 ---
 
-## Gameplay: Forming a chain of 3 - Boundary
+## Gameplay: Forming a chain of 3
 
 I will test forming a chain of 3
 
@@ -243,13 +243,13 @@ I will play Bob's tokens in slot 4, 5 and 6
 
 ### Expected Test Result
 
-A chain should form and Bob should gain 3 points
+A chain should form
 
 ---
 
-## Gameplay: Forming a chain of 4 - Valid
+## Gameplay: Forming a chain of 4
 
-I will test forming a chain of 3
+I will test forming a chain of 4
 
 ### Test Data To Use
 
@@ -281,47 +281,95 @@ I will form a chain at the end of the board
 
 ### Test Data To Use
 
-Details of test data and reasons for selection. Details of test data and reasons for selection. Details of test data and
-reasons for selection.
+I will play Bob's tokens in slot 10, 11, 12
 
 ### Expected Test Result
 
-Statement detailing what should happen. Statement detailing what should happen. Statement detailing what should happen.
-Statement detailing what should happen.
+A chain should form and Bob should gain 3 points
 
 ---
 
-## Example Test Name
+## Gameplay: The board forming
 
-Example test description. Example test description. Example test description. Example test description. Example test
-description. Example test description.
+When the game starts the board should form
 
 ### Test Data To Use
 
-Details of test data and reasons for selection. Details of test data and reasons for selection. Details of test data and
-reasons for selection.
+Play from the main menu
 
 ### Expected Test Result
 
-Statement detailing what should happen. Statement detailing what should happen. Statement detailing what should happen.
-Statement detailing what should happen.
+The game should start and the board should form
 
 ---
 
-## Example Test Name
+## Gameplay: Player gaining score
 
-Example test description. Example test description. Example test description. Example test description. Example test
-description. Example test description.
+I will form a chain with Bob's counters and they should gain points
 
 ### Test Data To Use
 
-Details of test data and reasons for selection. Details of test data and reasons for selection. Details of test data and
-reasons for selection.
+I will form a chain in position 4, 5 and 6
 
 ### Expected Test Result
 
-Statement detailing what should happen. Statement detailing what should happen. Statement detailing what should happen.
-Statement detailing what should happen.
+Bob should gain score
+
+---
+
+## Gameplay: Player winning with exactly 10 points - boundary
+
+Testing player winning (reaching 10 points)
+
+### Test Data To Use
+
+I will test when bob reaches 10 points
+
+### Expected Test Result
+
+Bob should win
+
+---
+
+## Gameplay: Player winning with >10 points - Valid
+
+I will test player winning (reaching 10 points)
+
+### Test Data To Use
+
+I will test when bob reaches 11 points
+
+### Expected Test Result
+
+Bob should win
+
+---
+
+## Gameplay: Player pushing another players token out
+
+I will test pushing another players token out by using 2 adjacent tokens of the other player
+
+### Test Data To Use
+
+I will have Dave's token in position 4 and Dave's tokens in position 3 and 5
+
+### Expected Test Result
+
+Dave's token should be pushed out
+
+---
+
+## Input: Placing a token between 2 of the other player's - Invalid
+
+I will test placing a token in an invalid place due to being blocked by the other players
+
+### Test Data To Use
+
+I will attempt to put Dave's token in slot 5 when Bob's tokens are in 4 and 6
+
+### Expected Test Result
+
+The game should reject the move and inform them the place is invalid
 
 ---
 
