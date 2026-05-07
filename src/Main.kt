@@ -17,8 +17,10 @@ val boxes = mutableListOf<String>() // The list for storing the values of the bo
 
 const val blankToken = "-" // Token to use for the blank space
 
-// Data class for defining all of the players variables/values.
-// This is done to make the data regarding the player clearer
+/**
+ * Data class for defining all the players variables/values.
+ *  This is done to make the data regarding the player clearer
+ */
 data class Player(
     val token: String,
     var score: Int,
@@ -26,8 +28,10 @@ data class Player(
     val colour: String
 )
 
-// Main function for introducing game name and checking user action.
-// This function used for calling the main game function or rules function (or quiting)
+/**
+ * Main function for introducing game name and checking user action.
+ * This function used for calling the main game function or rules function (or quiting)
+ */
 fun main() {
     println("Welcome to Chain Reaction!")
     println("--------------------------")
@@ -42,8 +46,10 @@ fun main() {
     }
 }
 
-// Print's menu and get input for user choice on starting game/reading rules/ quiting
-// I have used this function to get the users input for the main menu
+/**
+ *  Print's menu and get input for user choice on starting game/reading rules/ quiting
+ *  I have used this function to get the users input for the main menu
+ */
 fun getUserActionMenu(): Char {
     println("What would you like to do?")
     println("[R]ules")
@@ -63,7 +69,9 @@ fun getUserActionMenu(): Char {
     }
 }
 
-// Function to show the rules of the game
+/**
+ * Function to show the rules of the game
+ */
 fun showRules() {
     println("──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────")
     println(
@@ -93,8 +101,10 @@ fun showRules() {
     println("──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────")
 }
 
-// Main game function for adding score and running all other functions related to the game.
-// This function will run until one of the players win
+/**
+ * Main game function for adding score and running all other functions related to the game.
+ *  This function will run until one of the players win
+ */
 fun game() {
     val player1Token = "X"
     val player2Token = "O"
@@ -114,6 +124,7 @@ fun game() {
     println("")
 
     showBoxes(player1, player2)
+    // Main loop for the game (only runs while a player has not won)
     while (player1.score < winScore && player2.score < winScore) {
         var scoreAdd = 0
         // Code for player turn
@@ -123,12 +134,12 @@ fun game() {
 
         // Code to switch player
         if (currentPlayer == player1) {
-            currentPlayer.score += scoreAdd
+            currentPlayer.score += scoreAdd // Adds score to player
 
             currentPlayer = player2
             otherPlayer = player1
         } else {
-            currentPlayer.score += scoreAdd
+            currentPlayer.score += scoreAdd // Adds score to player
 
             currentPlayer = player1
             otherPlayer = player2
@@ -143,7 +154,10 @@ fun game() {
 
 }
 
-// Function for adding the boxes to the boxes list
+/**
+ *  Function for adding the boxes to the boxes list
+ *  This sets up the list to be manipulated and shown
+ */
 fun createBoxes() {
 
     // Sets the list to be clear for a new game
@@ -155,7 +169,12 @@ fun createBoxes() {
     }
 }
 
-// Function for displaying the contents of the box list
+
+/**
+ *  Function for displaying the contents of the box list.
+ *  This function reads the box lists the print's out the data in a readable form for the user to see.
+ *  player1/2 are player objects - required to access the tokens/colour/name/score of the players.
+ */
 fun showBoxes(player1: Player, player2: Player) {
 
     // Returns if list is empty in order to not print only ending and starting segments of boxes
@@ -193,7 +212,10 @@ fun showBoxes(player1: Player, player2: Player) {
 
 }
 
-// Function for getting player's names
+/**
+ *  This gets the players names so that the players have names throughout the code
+ *  currentPlayer is an object -  required to access the tokens/colour/name/score of the players
+ */
 fun playerNames(currentPlayer: String): String {
     var playerInput: String?
     val maxPlayerNameLeng = 14
@@ -216,8 +238,12 @@ fun playerNames(currentPlayer: String): String {
     }
 }
 
-// Function for getting the input for the player's turn & asking what square they would like to put their piece in
-// This function is for managing the players turn
+/**
+ *  This function is for managing the players turn
+ *  Gets the input for the player's turn & asking what square they would like to put their piece in
+ *  Then manipulates the list to put the player's token in if the move is valid
+ *  currentPlayer/otherPlayer are objects - required to access the tokens/colour/name/score of the players
+ */
 fun playTurn(
     currentPlayer: Player,
     otherPlayer: Player
@@ -225,6 +251,7 @@ fun playTurn(
 
     while (true) {
 
+        // Print's to asks player about their turn and reads their input
         print("${currentPlayer.name}'s".col(hex = currentPlayer.colour) + " turn please select what square you would like to place your token in (1-${boxes.size}): ")
         val turn = readln().toIntOrNull()
 
@@ -251,7 +278,10 @@ fun playTurn(
     }
 }
 
-// Function for checking whether a player has pushed another player's token out
+/**
+ *  Function for checking whether a player has pushed another player's token out
+ *  Then if the player has pushed out a token manipulates the list to remove that token
+ */
 fun checkBoxesForPushToken(
     currentPlayer: Player,
     otherPlayer: Player
@@ -270,7 +300,12 @@ fun checkBoxesForPushToken(
     }
 }
 
-// Checks whether the player has formed a chain and returns the value of how much score to add to the player
+/**
+ *  Checks whether the player has formed.
+ *  If the player has formed a chain then removes the tokens from the list.
+ *  Returns the amount of score to add to the player.
+ *  currentPlayer is an object - required to access the tokens/colour/name/score of the current player.
+ */
 fun checkBoxesForChain(currentPlayer: Player): Int {
     var inChain = false // Whether the player is in a chain
     var startPosition = -1 // Invalid start position set in order to signify a chain has not yet started
@@ -322,7 +357,10 @@ fun checkBoxesForChain(currentPlayer: Player): Int {
     return playerScoreAdd // Returns the amount of score to add to the player
 }
 
-// Shows the players scores
+/**
+ *  Shows the players scores is a readable format for the user.
+ *  player1/2 are objects - required to access the tokens/colour/name/score of the players.
+ */
 fun showScore(player1: Player, player2: Player) {
     // Print's the top part of the boxes
     println("Scores")
@@ -342,8 +380,10 @@ fun showScore(player1: Player, player2: Player) {
     println("└────────────────────┘")
 }
 
-
-// Checks if the player has won and print's if they have
+/**
+ *  Checks if the player has won and print's if they have
+ *  currentPlayer is an object - required to access the tokens/colour/name/score of the players
+ */
 fun checkForPlayerWin(currentPlayer: Player) {
     if (currentPlayer.score >= winScore) {
         println("")
